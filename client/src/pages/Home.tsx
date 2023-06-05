@@ -1,14 +1,12 @@
 import { Grid, Loader, Title } from "@mantine/core";
-import { useContractRead } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import DisplayCampaigns, {
   DisplayCampaignsProps,
 } from "../components/DisplayCampaigns";
-import { useAppState } from "../context";
 
 const Home = () => {
-  const { contract } = useAppState();
-  const { data, isLoading } = useContractRead(contract, "getCampaigns");
+  const data = "";
+  // data = get all the campaigns from the contract 
 
   return (
     <div>
@@ -16,7 +14,7 @@ const Home = () => {
         All Campaigns
       </Title>
 
-      {isLoading ? (
+      {!data ? (
         <Loader />
       ) : (
         <Grid>

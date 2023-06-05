@@ -1,14 +1,13 @@
 import { Loader, Grid, Alert, Title } from "@mantine/core";
-import { useContractRead } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import DisplayCampaigns, {
   DisplayCampaignsProps,
 } from "../components/DisplayCampaigns";
-import { useAppState } from "../context";
 
 const Profile = () => {
-  const { contract, address } = useAppState();
-  const { data, isLoading } = useContractRead(contract, "getCampaigns");
+  const data ="";
+  const address="0xkam";
+  // data = get all the campaigns
 
   if (!address) {
     return (
@@ -22,7 +21,7 @@ const Profile = () => {
 
   return (
     <div>
-      {isLoading ? (
+      {!data ? (
         <Loader />
       ) : (
         <div>

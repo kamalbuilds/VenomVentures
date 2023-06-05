@@ -1,11 +1,9 @@
 import { Image, Navbar as NavbarMantine, NavLink } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { navlinks } from "../constants";
-import { useAppState } from "../context";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { disconnect } = useAppState();
   return (
     <NavbarMantine
       width={{ base: 180 }}
@@ -18,13 +16,6 @@ const Navbar = () => {
               <NavLink
                 label={link.name}
                 disabled={link.disabled}
-                onClick={() => {
-                  if (link.name === "logout") {
-                    disconnect && disconnect();
-                  } else {
-                    navigate(link.link);
-                  }
-                }}
                 className="rounded-full capitalize"
                 icon={<Image src={link.imgUrl} />}
               />

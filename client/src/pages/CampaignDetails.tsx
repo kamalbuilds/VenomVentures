@@ -10,7 +10,6 @@ import {
   Title,
 } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
-import { useContractRead, useContractWrite } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import { useLocation, useParams } from "react-router-dom";
 import { z } from "zod";
@@ -32,14 +31,12 @@ const CampaignDetails = () => {
 
   console.log({ id });
 
-  const { contract, address } = useAppState();
 
-  const { data, isLoading } = useContractRead(contract, "getCampaign", id);
+  const data ="";
+  const address =""
+  // get campaign by id
 
-  const { mutateAsync: donateCampaign } = useContractWrite(
-    contract,
-    "donateToCampaign"
-  );
+  const donateCampaign  =  "";
 
   if (isLoading) {
     return <Loader />;

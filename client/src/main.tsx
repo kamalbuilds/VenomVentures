@@ -4,7 +4,6 @@ import App from "./App";
 import "./index.css";
 import { createEmotionCache, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
-import { StateProvider } from "./context";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element);
 
@@ -48,11 +47,9 @@ root.render(
         
         <NotificationsProvider position="top-right">
           <Router>
-            <StateProvider>
               
                 <App />
               
-            </StateProvider>
           </Router>
         </NotificationsProvider>
         

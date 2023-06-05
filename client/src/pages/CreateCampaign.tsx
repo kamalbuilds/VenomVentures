@@ -6,7 +6,6 @@ import DateForm from "../components/DateForm";
 import Form, { FormProps, FORM_ERROR } from "../components/Form";
 import LabeledTextField from "../components/FormField";
 import LabeledTextAreaField from "../components/TextAreaForm";
-import { useAppState } from "../context";
 
 export function CampaignForm<S extends z.ZodType<any, any>>(
   props: FormProps<S>
@@ -90,7 +89,9 @@ export type CreateCampaignValidationType = z.infer<
 >;
 
 const CreateCampaign = () => {
-  const { createCampaign, address } = useAppState();
+  const createCampaign= "";
+  const address=""
+  // call the createCampaign function here
   const navigate = useNavigate();
 
   if (!address) {

@@ -9,11 +9,14 @@ import { IconSearch } from "@tabler/icons-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ologo, thirdweb } from "../assets";
-import { useAppState } from "../context";
+
 const Header = () => {
   const navigate = useNavigate();
-  const { address, connect } = useAppState();
+
   const [isLoading, setIsLoading] = useState(false);
+  const address= "0ss";
+  const connect= true;
+
   return (
     <HeaderMantine height={60} p="xs">
       <div className="flex">

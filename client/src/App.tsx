@@ -6,7 +6,6 @@ import CampaignDetails from "./pages/CampaignDetails";
 import CreateCampaign from "./pages/CreateCampaign";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import Connect from "./pages/Connect";
 // importing the context
 import { AssetPriceContext, useAssetPrice } from '../src/context/AssetPriceContext';
 import { EthBalance } from '../src/pages/EthBalance';
@@ -25,7 +24,6 @@ const App = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/create-campaign" element={<CreateCampaign />} />
                 <Route path="/campaign-details/:id" element={<CampaignDetails />} />
-                <Route path="/Connect" element={<Connect />} />
                 <Route path="/analyse" element={<EthBalance />} />
               </Routes>
             </AppShell>.
