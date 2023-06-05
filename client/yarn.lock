@@ -48,23 +48,6 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@arcana/auth-wagmi@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@arcana/auth-wagmi/-/auth-wagmi-0.0.2.tgz#93e88d37faa930a2a265f67b50e726a78244f325"
-  integrity sha512-Jh1+kjB278pEEEcgkPOMES77O+Lt9HDiWEOGtho7zhKBKg1WvOwmWLdQNuJggfMO0PE0Wi/nn9jp8lu/6E+1Kw==
-  dependencies:
-    "@arcana/auth" "^1.0.0"
-    "@wagmi/core" "0.9.5"
-
-"@arcana/auth@^1.0.0":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@arcana/auth/-/auth-1.0.4.tgz#ff1315531fcc042cc92c4f34ec15cc295c1e1206"
-  integrity sha512-1RFNdEMsYrt2IbMn+H6rP7mFJGwOBOAhqokhkSl5J+U/LJGvmLwk+/yFmDPAscHWa4u/ys9gpHN49yylMhorrw==
-  dependencies:
-    "@metamask/safe-event-emitter" "^2.0.0"
-    eth-rpc-errors "^4.0.3"
-    penpal "^6.0.1"
-
 "@assemblyscript/loader@^0.9.4":
   version "0.9.4"
   resolved "https://registry.yarnpkg.com/@assemblyscript/loader/-/loader-0.9.4.tgz#a483c54c1253656bb33babd464e3154a173e1577"
@@ -2678,30 +2661,10 @@
     magic-string "^0.26.7"
     react-refresh "^0.14.0"
 
-"@wagmi/chains@0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-0.2.7.tgz#07029a66ee5e86fbf699e8fd3b6163f11b8799d0"
-  integrity sha512-Oqnkl5n9MTBdMzgIwwdSKEDfm0Vdv2CYBaDyTa5SiTjFNaIfT6MRATLg7KbI3JydfxqJphsVFL+TZZqFvkte/g==
-
 "@wagmi/chains@0.2.9":
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-0.2.9.tgz#3dba5fbeb3a2a5c9253bbedce3ede8c84bd809cb"
   integrity sha512-z0Nv7Cto+t/47NtC8td7khMSWX0zKVCnm8gkgrRs9PHvN+4W7XZfUVQYfhIfkbelT/ONN9V1OA+ho122gmRr3Q==
-
-"@wagmi/connectors@0.2.5":
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-0.2.5.tgz#b9a55c2f49b448ff573806fee9e755e2ccc16e56"
-  integrity sha512-saS5wps+R5SCs4ka9BG4vlaS4xDKn8GRt5y/f6v8RYBhat+H+3DGBowwGLN/OLtu744VKY8sIsm8/GRy2tXbsg==
-  dependencies:
-    "@coinbase/wallet-sdk" "^3.5.4"
-    "@ledgerhq/connect-kit-loader" "^1.0.1"
-    "@safe-global/safe-apps-provider" "^0.15.2"
-    "@safe-global/safe-apps-sdk" "^7.9.0"
-    "@walletconnect/ethereum-provider" "^1.8.0"
-    "@walletconnect/universal-provider" "2.3.3"
-    "@web3modal/standalone" "^2.1.1"
-    abitype "^0.3.0"
-    eventemitter3 "^4.0.7"
 
 "@wagmi/connectors@0.2.7":
   version "0.2.7"
@@ -2717,17 +2680,6 @@
     "@web3modal/standalone" "^2.1.1"
     abitype "^0.3.0"
     eventemitter3 "^4.0.7"
-
-"@wagmi/core@0.9.5":
-  version "0.9.5"
-  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-0.9.5.tgz#a8000cedc92a0f5e1b7b741a532c501684b60253"
-  integrity sha512-Ff4ejQbeexH5pfcYbwYusvxcYUY1+AuKCqHyYLliOQChLvymK7QGth7Hh7lKEf1Js/g4ktHHI07EfLKHEiDYWw==
-  dependencies:
-    "@wagmi/chains" "0.2.7"
-    "@wagmi/connectors" "0.2.5"
-    abitype "^0.3.0"
-    eventemitter3 "^4.0.7"
-    zustand "^4.3.1"
 
 "@wagmi/core@0.9.7":
   version "0.9.7"
@@ -5433,7 +5385,7 @@ eth-rpc-errors@4.0.2:
   dependencies:
     fast-safe-stringify "^2.0.6"
 
-eth-rpc-errors@^4.0.2, eth-rpc-errors@^4.0.3:
+eth-rpc-errors@^4.0.2:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/eth-rpc-errors/-/eth-rpc-errors-4.0.3.tgz#6ddb6190a4bf360afda82790bb7d9d5e724f423a"
   integrity sha512-Z3ymjopaoft7JDoxZcEb3pwdGh7yiYMhOwm2doUt6ASXlMavpNlK6Cre0+IMl2VSGyEU9rkiperQhp5iRxn5Pg==
@@ -7845,11 +7797,6 @@ pbkdf2@^3.0.17, pbkdf2@^3.0.3:
     ripemd160 "^2.0.1"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
-
-penpal@^6.0.1:
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/penpal/-/penpal-6.2.2.tgz#20a0a0592881a959e8c87116d854f9528b1aa601"
-  integrity sha512-RQD7hTx14/LY7QoS3tQYO3/fzVtwvZI+JeS5udgsu7FPaEDjlvfK9HBcme9/ipzSPKnrxSgacI9PI7154W62YQ==
 
 performance-now@^2.1.0:
   version "2.1.0"
