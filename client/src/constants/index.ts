@@ -5,8 +5,6 @@ import {
   payment,
   profile,
   withdraw,
-  notifications,
-  chainlink,
 } from "../assets";
 
 export const navlinks = [
@@ -19,16 +17,6 @@ export const navlinks = [
     name: "campaign",
     imgUrl: createCampaign,
     link: "/create-campaign",
-  },
-  {
-    name: "analyse",
-    imgUrl: chainlink,
-    link: "/analyse",
-  },
-  {
-    name: "notifications",
-    imgUrl: notifications,
-    link: "/notifications",
   },
   {
     name: "Airdrop",

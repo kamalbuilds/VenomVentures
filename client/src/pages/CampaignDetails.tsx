@@ -18,7 +18,6 @@ import { FORM_ERROR } from "../components/Form";
 import { FundForm } from "../components/FundForm";
 import { useAppState } from "../context";
 import { calculateBarPercentage, daysLeft } from "../utils";
-import {CreateFlow} from "../components/superfluid/createFlow";
 import {Demonstration} from "../components/demonstration/Demonstration";
 
 
@@ -179,7 +178,6 @@ const CampaignDetails = () => {
               
             )}
           </div>
-          <CreateFlow />
         </div>
       </div>
     </Container>
