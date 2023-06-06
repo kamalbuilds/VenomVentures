@@ -22,6 +22,7 @@ function Main({ venomConnect }: Props) {
   const [venomProvider, setVenomProvider] = useState<any>();
   const [standaloneProvider, setStandAloneProvider] = useState<ProviderRpcClient | undefined>();
   const [address, setAddress] = useState();
+  console.log(address,"address");
   // User's token (TIP-3) balance
   const [balance, setBalance] = useState<string | undefined>();
   // User's TokenWallet (TIP-3) address
@@ -132,6 +133,7 @@ function Main({ venomConnect }: Props) {
   // you can see a shortAddress() functions here. It is just a helper, that truncate part of our long address to something like 0:1234...1234
   return (
     <div className="box">
+      <h1>dfds</h1>
       <img className="decor" alt="fon" src={fonImg} />
       <header>
         {address ? (
@@ -155,6 +157,7 @@ function Main({ venomConnect }: Props) {
         tokenWalletAddress={tokenWalletAddress}
         checkBalance={updateBalance}
       />
+      <h1>dsd</h1>
     </div>
   );
 }
