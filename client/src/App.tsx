@@ -8,7 +8,6 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 // importing the context
 import { AssetPriceContext, useAssetPrice } from '../src/context/AssetPriceContext';
-import { EthBalance } from '../src/pages/EthBalance';
 import { useState } from "react";
 
 
@@ -24,9 +23,8 @@ const App = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/create-campaign" element={<CreateCampaign />} />
                 <Route path="/campaign-details/:id" element={<CampaignDetails />} />
-                <Route path="/analyse" element={<EthBalance />} />
               </Routes>
-            </AppShell>.
+            </AppShell>
           </AssetPriceContext.Provider>
     </div>
   );
