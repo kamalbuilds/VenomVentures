@@ -8,21 +8,8 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Main from './pages/Main';
 import { useEffect , useState } from "react";
-import { VenomConnect } from "venom-connect";
-import { initVenomConnect } from './venom-connect/configure';
 
 const App = () => {
-
-  const [venomConnect, setVenomConnect] = useState<VenomConnect | undefined>();
-
-  const init = async () => {
-    const _venomConnect = await initVenomConnect();
-    setVenomConnect(_venomConnect);
-  };
-
-  useEffect(() => {
-    init();
-  }, []);
 
   return (
     <div>
@@ -32,7 +19,6 @@ const App = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/create-campaign" element={<CreateCampaign />} />
                 <Route path="/campaign-details/:id" element={<CampaignDetails />} />
-                <Route path="/m" element={ <Main venomConnect={venomConnect} /> } />
               </Routes>
             </AppShell>
     </div>
