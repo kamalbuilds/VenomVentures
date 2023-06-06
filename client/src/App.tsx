@@ -6,26 +6,35 @@ import CampaignDetails from "./pages/CampaignDetails";
 import CreateCampaign from "./pages/CreateCampaign";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-// importing the context
-import { AssetPriceContext, useAssetPrice } from '../src/context/AssetPriceContext';
-import { useState } from "react";
-
+import Main from './pages/Main';
+import { useEffect , useState } from "react";
+import { VenomConnect } from "venom-connect";
+import { initVenomConnect } from './venom-connect/configure';
 
 const App = () => {
-  const assetPrice = useAssetPrice();
+
+  const [venomConnect, setVenomConnect] = useState<VenomConnect | undefined>();
+
+  const init = async () => {
+    const _venomConnect = await initVenomConnect();
+    setVenomConnect(_venomConnect);
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
 
   return (
     <div>
-          <AssetPriceContext.Provider value={assetPrice}>
             <AppShell padding="md" navbar={<Navbar />} header={<Header />} >
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/create-campaign" element={<CreateCampaign />} />
                 <Route path="/campaign-details/:id" element={<CampaignDetails />} />
+                <Route path="/m" element={ <Main venomConnect={venomConnect} /> } />
               </Routes>
             </AppShell>
-          </AssetPriceContext.Provider>
     </div>
   );
 };
