@@ -6,6 +6,7 @@ declare global {
   const locklift: import("locklift").Locklift<FactorySource>;
 }
 
+const secret_key = process.env.secretkey || "";
 const LOCAL_NETWORK_ENDPOINT = process.env.NETWORK_ENDPOINT || "http://localhost/graphql";
 const DEV_NET_NETWORK_ENDPOINT = process.env.DEV_NET_NETWORK_ENDPOINT || "https://devnet-sandbox.evercloud.dev/graphql";
 
@@ -80,7 +81,7 @@ const config: LockliftConfig = {
         },
       },
       giver: {
-        address: "0:0000000000000000000000000000000000000000000000000000000000000000",
+        address: "0:9fa98bf9e91cb0ad1160fb2f20327e7bb9317e48f7d153898d75ccb9940abce4",
         key: "secret key",
       },
       tracing: {
@@ -132,7 +133,7 @@ const config: LockliftConfig = {
       // This giver is default Wallet
       giver: {
         address: "0:0000000000000000000000000000000000000000000000000000000000000000",
-        key: "secret key",
+        key: secret_key,
       },
       tracing: {
         endpoint: MAIN_NET_NETWORK_ENDPOINT,

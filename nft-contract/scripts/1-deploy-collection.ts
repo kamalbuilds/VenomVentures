@@ -6,7 +6,7 @@ async function main() {
     const { contract: sample, tx } = await locklift.factory.deployContract({
         contract: "Collection",
         publicKey: signer.publicKey,
-        initParams: {},nft-contract/scripts/1-deploy-collection.ts
+        initParams: {},
         constructorParams: {
             codeNft: nftArtifacts.code,
             codeIndex: indexArtifacts.code,
@@ -25,3 +25,6 @@ main()
         console.log(e);
         process.exit(1);
     });
+
+
+// npx locklift run --network test --script scripts/1-deploy-collection.ts
