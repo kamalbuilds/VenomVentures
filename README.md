@@ -11,6 +11,13 @@ VenomVentures is an innovative platform built on the Venom blockchain that aims 
 - **Transparency and Trust**: VenomVentures leverages the Venom blockchain for transparent and immutable transaction records.
 - **Smart Contract Integration**: Smart contracts automate the auction process, ensuring secure and fraud-resistant transactions.
 
+### All Test Cases Pass
+
+docker run -d --name local-node -e USER_AGREEMENT=yes -p80:80 tonlabs/local-node
+
+npm run test -- nft-contract/test/auction-test.ts
+![image](https://github.com/legendarykamal/VenomVentures/assets/95926324/fa492793-bf22-4df3-ac83-5e3067be86b6)
+
 ### Getting Started
 
 To get started with VenomVentures, follow these steps:
@@ -44,7 +51,7 @@ We would like to express our gratitude to the Venom open-source community for th
 ### Resources
 
 - Venom Blockchain: [venom.network](https://venom.network)
-- Smart Contracts: [VenomVentures Contracts](https://github.com/venomventures/contracts)
+- Smart Contracts: [VenomVentures Contracts](https://github.com/venomventures/nft-contract)
 - Documentation: [VenomVentures Docs](https://venomventures-docs.com)
 
 Join VenomVentures today and revolutionize the way startups and early-stage investors connect and collaborate for successful funding opportunities.
