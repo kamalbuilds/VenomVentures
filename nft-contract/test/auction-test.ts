@@ -11,7 +11,6 @@ let auction: Contract<FactorySource["Auction"]>;
 let tokenRoot: Contract<FactorySource["TokenRoot"]>;
 
 
-
 describe("Test Sample contract", async function () {
   before(async () => {
     // We need some contracts, before all tests
