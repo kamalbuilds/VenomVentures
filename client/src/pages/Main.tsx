@@ -4,7 +4,7 @@ import { Address, ProviderRpcClient } from 'everscale-inpage-provider';
 import { formatBalance, shortAddress } from '../utils/helpers';
 
 import NftAuction from '../components/NftAuction';
-
+import '../styles/main.css';
 import fonImg from '../styles/img/decor.svg';
 import LogOutImg from '../styles/img/log_out.svg';
 
@@ -133,7 +133,6 @@ function Main({ venomConnect }: Props) {
   // you can see a shortAddress() functions here. It is just a helper, that truncate part of our long address to something like 0:1234...1234
   return (
     <div className="box">
-      <h1>dfds</h1>
       <img className="decor" alt="fon" src={fonImg} />
       <header>
         {address ? (
@@ -157,7 +156,6 @@ function Main({ venomConnect }: Props) {
         tokenWalletAddress={tokenWalletAddress}
         checkBalance={updateBalance}
       />
-      <h1>dsd</h1>
     </div>
   );
 }

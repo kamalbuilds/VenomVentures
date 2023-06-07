@@ -30,6 +30,11 @@ export const navlinks = [
     link: "/profile"
   },
   {
+    name: "Auction",
+    imgUrl: payment,
+    link: "/auction"
+  },
+  {
     name: "Claim NFTS",
     imgUrl: withdraw,
     link: "/claim",

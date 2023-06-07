@@ -9,7 +9,6 @@ import { IconSearch } from "@tabler/icons-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ologo, thirdweb } from "../assets";
-import Main from "../pages/Main";
 import { VenomConnect } from "venom-connect";
 import { initVenomConnect } from '../venom-connect/configure';
 import { useEffect } from "react";
@@ -51,7 +50,6 @@ const Header = () => {
           />
 
           <div className="flex space-x-5 pr-5">
-            <Main venomConnect={venomConnect} />
 
             <Link to="/profile">
               <Avatar src={null} alt="it's me" radius="xl" />
