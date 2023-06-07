@@ -6,7 +6,7 @@ async function main() {
     const { contract: sample, tx } = await locklift.factory.deployContract({
         contract: "Collection",
         publicKey: signer.publicKey,
-        initParams: {},
+        initParams: {},nft-contract/scripts/1-deploy-collection.ts
         constructorParams: {
             codeNft: nftArtifacts.code,
             codeIndex: indexArtifacts.code,
