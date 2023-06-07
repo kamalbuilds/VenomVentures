@@ -36,3 +36,5 @@ main()
         console.log(e);
         process.exit(1);
     });
+
+    // npx locklift run --network local --script scripts/3-deploy-auction.ts

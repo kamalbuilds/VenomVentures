@@ -32,7 +32,7 @@ npm run test -- nft-contract/test/auction-test.ts
 ### For Running the scripts 
 
 npx locklift run --network test --script scripts/1-deploy-collection.ts
-
+npx locklift run --network local --script scripts/3-deploy-auction.ts
 ### Contribution Guidelines
 
 VenomVentures welcomes contributions from the community. To contribute, please follow these guidelines:
