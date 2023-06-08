@@ -90,19 +90,10 @@ export type CreateCampaignValidationType = z.infer<
 
 const CreateCampaign = () => {
   const createCampaign= "";
-  const address=""
   // call the createCampaign function here
   const navigate = useNavigate();
 
-  if (!address) {
-    return (
-      <div>
-        <Alert color="red">
-          You need to connect your wallet to create a campaign
-        </Alert>
-      </div>
-    );
-  }
+
   return (
     <div>
       <Title align="center" color="orange" order={1}>
