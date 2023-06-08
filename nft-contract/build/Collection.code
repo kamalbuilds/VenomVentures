@@ -1,4 +1,4 @@
-.version sol 0.62.0
+.version sol 0.61.2
 
 .macro constructor
 DROP
@@ -94,11 +94,11 @@ DICTUSETB
 SETGLOB 10
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 55
 CALLREF {
-	CALL $_deployIndexBasis_5852e463_internal_macro$
+	CALL $_deployIndexBasis_internal_macro$
 }
-.loc ../contracts/Collection.tsol, 38
+.loc ../contracts/Collection.sol, 38
 ACCEPT
-.loc ../contracts/Collection.tsol, 0
+.loc ../contracts/Collection.sol, 0
 CALLREF {
 	CALL $c7_to_c4$
 }
@@ -113,12 +113,12 @@ ISNULL
 IFREF {
 	CALL $c4_to_c7$
 }
-.loc ../contracts/Collection.tsol, 41
+.loc ../contracts/Collection.sol, 41
 LDREF
 ENDS
-.loc ../contracts/Collection.tsol, 0
+.loc ../contracts/Collection.sol, 0
 CALLREF {
-	CALL $mintNft_da86f4a9_internal_macro$
+	CALL $mintNft_internal_macro$
 }
 DROP
 CALLREF {
@@ -126,8 +126,8 @@ CALLREF {
 }
 THROW 0
 
-.macro mintNft_da86f4a9_internal_macro
-.loc ../contracts/Collection.tsol, 44
+.macro mintNft_internal_macro
+.loc ../contracts/Collection.sol, 44
 DEPTH
 ADDCONST -2
 PICK
@@ -137,28 +137,28 @@ ADD
 UFITS 128
 GREATER
 THROWIFNOT 102
-.loc ../contracts/Collection.tsol, 45
+.loc ../contracts/Collection.sol, 45
 PUSHINT 0
 PUSHINT 4
 RAWRESERVE
-.loc ../contracts/Collection.tsol, 47
+.loc ../contracts/Collection.sol, 47
 GETGLOB 12
 DUP
-.loc ../contracts/Collection.tsol, 48
+.loc ../contracts/Collection.sol, 48
 INC
 UFITS 128
 SETGLOB 12
-.loc ../contracts/Collection.tsol, 50
+.loc ../contracts/Collection.sol, 50
 MYADDR
 CALLREF {
-	CALL $_buildNftCode_c58e679e_internal_macro$
+	CALL $_buildNftCode_internal_macro$
 }
-.loc ../contracts/Collection.tsol, 51
+.loc ../contracts/Collection.sol, 51
 OVER
 CALLREF {
-	CALL $_buildNftState_c971fdf8_internal_macro$
+	CALL $_buildNftState_internal_macro$
 }
-.loc ../contracts/Collection.tsol, 53
+.loc ../contracts/Collection.sol, 53
 GETGLOB 17
 GETGLOB 16
 GETGLOB 14
@@ -223,7 +223,7 @@ STBREFR
 ENDC
 PUSHPOW2 7
 SENDRAWMSG
-.loc ../contracts/Collection.tsol, 67
+.loc ../contracts/Collection.sol, 67
 GETGLOB 9
 BLKPUSH 2, 0
 BLKSWAP 2, 3
@@ -252,14 +252,14 @@ STBREFR
 ENDC
 PUSHINT 0
 SENDRAWMSG
-.loc ../contracts/Collection.tsol, 0
+.loc ../contracts/Collection.sol, 0
 
-.globl	_buildNftState_c971fdf8_internal
-.type	_buildNftState_c971fdf8_internal, @function
-CALL $_buildNftState_c971fdf8_internal_macro$
+.globl	_buildNftState_internal
+.type	_buildNftState_internal, @function
+CALL $_buildNftState_internal_macro$
 
-.macro _buildNftState_c971fdf8_internal_macro
-.loc ../contracts/Collection.tsol, 84
+.macro _buildNftState_internal_macro
+.loc ../contracts/Collection.sol, 84
 PUSHINT 0
 NEWC
 STU 256
@@ -284,13 +284,13 @@ STOPTREF
 STOPTREF
 STZERO
 ENDC
-.loc ../contracts/Collection.tsol, 0
+.loc ../contracts/Collection.sol, 0
 
-.globl	_deployIndexBasis_5852e463_internal
-.type	_deployIndexBasis_5852e463_internal, @function
-CALL $_deployIndexBasis_5852e463_internal_macro$
+.globl	_deployIndexBasis_internal
+.type	_deployIndexBasis_internal, @function
+CALL $_deployIndexBasis_internal_macro$
 
-.macro _deployIndexBasis_5852e463_internal_macro
+.macro _deployIndexBasis_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 62
 GETGLOB 15
 HASHCU
@@ -307,12 +307,12 @@ GREATER
 THROWIFNOT 100
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 65
 CALLREF {
-	CALL $_buildIndexBasisCode_789e5705_internal_macro$
+	CALL $_buildIndexBasisCode_internal_macro$
 }
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 66
 MYADDR
 CALLREF {
-	CALL $_buildIndexBasisState_a23ddf1c_internal_macro$
+	CALL $_buildIndexBasisState_internal_macro$
 }
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 67
 DUP
@@ -380,7 +380,7 @@ SETGLOB 4
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 0
 CALLREF {
-	CALL $indexBasisCode_d4988fdc_internal_macro$
+	CALL $indexBasisCode_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -433,7 +433,7 @@ IFREF {
 }
 THROW 0
 
-.macro indexBasisCode_d4988fdc_internal_macro
+.macro indexBasisCode_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 72
 GETGLOB 4
 PUSHINT 0
@@ -464,7 +464,7 @@ SETGLOB 4
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 0
 CALLREF {
-	CALL $indexBasisCodeHash_9bc9aab8_internal_macro$
+	CALL $indexBasisCodeHash_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -520,7 +520,7 @@ IFREF {
 }
 THROW 0
 
-.macro indexBasisCodeHash_9bc9aab8_internal_macro
+.macro indexBasisCodeHash_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 77
 GETGLOB 4
 PUSHINT 0
@@ -531,7 +531,7 @@ FALSE
 SETINDEXQ 1
 SETGLOB 4
 CALLREF {
-	CALL $_buildIndexBasisCode_789e5705_internal_macro$
+	CALL $_buildIndexBasisCode_internal_macro$
 }
 HASHCU
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 0
@@ -554,7 +554,7 @@ SETGLOB 4
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 0
 CALLREF {
-	CALL $resolveIndexBasis_a28def97_internal_macro$
+	CALL $resolveIndexBasis_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -614,15 +614,15 @@ IFREF {
 }
 THROW 0
 
-.macro resolveIndexBasis_a28def97_internal_macro
+.macro resolveIndexBasis_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 82
 CALLREF {
-	CALL $_buildIndexBasisCode_789e5705_internal_macro$
+	CALL $_buildIndexBasisCode_internal_macro$
 }
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 83
 MYADDR
 CALLREF {
-	CALL $_buildIndexBasisState_a23ddf1c_internal_macro$
+	CALL $_buildIndexBasisState_internal_macro$
 }
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 84
 HASHCU
@@ -647,11 +647,11 @@ SETINDEXQ 1
 SETGLOB 4
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 0
 
-.globl	_buildIndexBasisCode_789e5705_internal
-.type	_buildIndexBasisCode_789e5705_internal, @function
-CALL $_buildIndexBasisCode_789e5705_internal_macro$
+.globl	_buildIndexBasisCode_internal
+.type	_buildIndexBasisCode_internal, @function
+CALL $_buildIndexBasisCode_internal_macro$
 
-.macro _buildIndexBasisCode_789e5705_internal_macro
+.macro _buildIndexBasisCode_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 95
 PUSHREF {
 	.blob x6e6674
@@ -770,11 +770,11 @@ CALLREF {
 }
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 0
 
-.globl	_buildIndexBasisState_a23ddf1c_internal
-.type	_buildIndexBasisState_a23ddf1c_internal, @function
-CALL $_buildIndexBasisState_a23ddf1c_internal_macro$
+.globl	_buildIndexBasisState_internal
+.type	_buildIndexBasisState_internal, @function
+CALL $_buildIndexBasisState_internal_macro$
 
-.macro _buildIndexBasisState_a23ddf1c_internal_macro
+.macro _buildIndexBasisState_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 108
 PUSHINT 0
 NEWC
@@ -818,7 +818,7 @@ SETGLOB 4
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 0
 CALLREF {
-	CALL $indexCode_aee52235_internal_macro$
+	CALL $indexCode_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -871,7 +871,7 @@ IFREF {
 }
 THROW 0
 
-.macro indexCode_aee52235_internal_macro
+.macro indexCode_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 117
 GETGLOB 4
 PUSHINT 0
@@ -902,7 +902,7 @@ SETGLOB 4
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 0
 CALLREF {
-	CALL $indexCodeHash_bbb6b582_internal_macro$
+	CALL $indexCodeHash_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -958,7 +958,7 @@ IFREF {
 }
 THROW 0
 
-.macro indexCodeHash_bbb6b582_internal_macro
+.macro indexCodeHash_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 122
 GETGLOB 4
 PUSHINT 0
@@ -972,11 +972,11 @@ GETGLOB 14
 HASHCU
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 0
 
-.globl	TIP4_3Collection__buildNftState_c971fdf8
-.type	TIP4_3Collection__buildNftState_c971fdf8, @function
-CALL $TIP4_3Collection__buildNftState_c971fdf8_macro$
+.globl	TIP4_3Collection__buildNftState
+.type	TIP4_3Collection__buildNftState, @function
+CALL $TIP4_3Collection__buildNftState_macro$
 
-.macro TIP4_3Collection__buildNftState_c971fdf8_macro
+.macro TIP4_3Collection__buildNftState_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol, 130
 PUSHINT 0
 NEWC
@@ -1022,7 +1022,7 @@ SETGLOB 4
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol, 0
 CALLREF {
-	CALL $getJson_f703db39_internal_macro$
+	CALL $getJson_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -1075,7 +1075,7 @@ IFREF {
 }
 THROW 0
 
-.macro getJson_f703db39_internal_macro
+.macro getJson_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol, 37
 GETGLOB 4
 PUSHINT 0
@@ -1088,11 +1088,11 @@ SETGLOB 4
 GETGLOB 13
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol, 0
 
-.globl	TIP4_2Collection__buildNftState_c971fdf8
-.type	TIP4_2Collection__buildNftState_c971fdf8, @function
-CALL $TIP4_2Collection__buildNftState_c971fdf8_macro$
+.globl	TIP4_2Collection__buildNftState
+.type	TIP4_2Collection__buildNftState, @function
+CALL $TIP4_2Collection__buildNftState_macro$
 
-.macro TIP4_2Collection__buildNftState_c971fdf8_macro
+.macro TIP4_2Collection__buildNftState_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol, 45
 PUSHINT 0
 NEWC
@@ -1138,7 +1138,7 @@ SETGLOB 4
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
 CALLREF {
-	CALL $totalSupply_18160ddd_internal_macro$
+	CALL $totalSupply_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -1191,7 +1191,7 @@ IFREF {
 }
 THROW 0
 
-.macro totalSupply_18160ddd_internal_macro
+.macro totalSupply_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 45
 GETGLOB 4
 PUSHINT 0
@@ -1222,7 +1222,7 @@ SETGLOB 4
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
 CALLREF {
-	CALL $nftCode_6e5fc867_internal_macro$
+	CALL $nftCode_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -1275,7 +1275,7 @@ IFREF {
 }
 THROW 0
 
-.macro nftCode_6e5fc867_internal_macro
+.macro nftCode_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 51
 GETGLOB 4
 PUSHINT 0
@@ -1287,7 +1287,7 @@ SETINDEXQ 1
 SETGLOB 4
 MYADDR
 CALLREF {
-	CALL $_buildNftCode_c58e679e_internal_macro$
+	CALL $_buildNftCode_internal_macro$
 }
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
 
@@ -1309,7 +1309,7 @@ SETGLOB 4
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
 CALLREF {
-	CALL $nftCodeHash_c1102341_internal_macro$
+	CALL $nftCodeHash_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -1365,7 +1365,7 @@ IFREF {
 }
 THROW 0
 
-.macro nftCodeHash_c1102341_internal_macro
+.macro nftCodeHash_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 57
 GETGLOB 4
 PUSHINT 0
@@ -1377,7 +1377,7 @@ SETINDEXQ 1
 SETGLOB 4
 MYADDR
 CALLREF {
-	CALL $_buildNftCode_c58e679e_internal_macro$
+	CALL $_buildNftCode_internal_macro$
 }
 HASHCU
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
@@ -1408,7 +1408,7 @@ LDU 256
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
 CALLREF {
-	CALL $nftAddress_f88fba8c_internal_macro$
+	CALL $nftAddress_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -1468,7 +1468,7 @@ IFREF {
 }
 THROW 0
 
-.macro nftAddress_f88fba8c_internal_macro
+.macro nftAddress_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 65
 GETGLOB 4
 PUSHINT 0
@@ -1479,24 +1479,24 @@ FALSE
 SETINDEXQ 1
 SETGLOB 4
 CALLREF {
-	CALL $_resolveNft_2d542587_internal_macro$
+	CALL $_resolveNft_internal_macro$
 }
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
 
-.globl	_resolveNft_2d542587_internal
-.type	_resolveNft_2d542587_internal, @function
-CALL $_resolveNft_2d542587_internal_macro$
+.globl	_resolveNft_internal
+.type	_resolveNft_internal, @function
+CALL $_resolveNft_internal_macro$
 
-.macro _resolveNft_2d542587_internal_macro
+.macro _resolveNft_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 73
 MYADDR
 CALLREF {
-	CALL $_buildNftCode_c58e679e_internal_macro$
+	CALL $_buildNftCode_internal_macro$
 }
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 74
 SWAP
 CALLREF {
-	CALL $_buildNftState_c971fdf8_internal_macro$
+	CALL $_buildNftState_internal_macro$
 }
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 75
 HASHCU
@@ -1512,11 +1512,11 @@ ENDC
 CTOS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
 
-.globl	_buildNftCode_c58e679e_internal
-.type	_buildNftCode_c58e679e_internal, @function
-CALL $_buildNftCode_c58e679e_internal_macro$
+.globl	_buildNftCode_internal
+.type	_buildNftCode_internal, @function
+CALL $_buildNftCode_internal_macro$
 
-.macro _buildNftCode_c58e679e_internal_macro
+.macro _buildNftCode_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 86
 NEWC
 STSLICE
@@ -1632,11 +1632,11 @@ CALLREF {
 }
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
 
-.globl	TIP4_1Collection__buildNftState_c971fdf8
-.type	TIP4_1Collection__buildNftState_c971fdf8, @function
-CALL $TIP4_1Collection__buildNftState_c971fdf8_macro$
+.globl	TIP4_1Collection__buildNftState
+.type	TIP4_1Collection__buildNftState, @function
+CALL $TIP4_1Collection__buildNftState_macro$
 
-.macro TIP4_1Collection__buildNftState_c971fdf8_macro
+.macro TIP4_1Collection__buildNftState_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 99
 PUSHINT 0
 NEWC
@@ -1664,11 +1664,11 @@ STZERO
 ENDC
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
 
-.globl	_isOwner_52494a14_internal
-.type	_isOwner_52494a14_internal, @function
-CALL $_isOwner_52494a14_internal_macro$
+.globl	_isOwner_internal
+.type	_isOwner_internal, @function
+CALL $_isOwner_internal_macro$
 
-.macro _isOwner_52494a14_internal_macro
+.macro _isOwner_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 107
 TRUE
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP4_1/TIP4_1Collection.sol, 0
@@ -1692,7 +1692,7 @@ LDU 32
 ENDS
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP6/TIP6.sol, 0
 CALLREF {
-	CALL $supportsInterface_01ffc9a7_internal_macro$
+	CALL $supportsInterface_internal_macro$
 }
 OVER
 PUSHCONT {
@@ -1745,7 +1745,7 @@ IFREF {
 }
 THROW 0
 
-.macro supportsInterface_01ffc9a7_internal_macro
+.macro supportsInterface_internal_macro
 .loc ../node_modules/@itgold/everscale-tip/contracts/TIP6/TIP6.sol, 14
 GETGLOB 4
 PUSHINT 0

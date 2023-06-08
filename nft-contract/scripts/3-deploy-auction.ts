@@ -38,3 +38,4 @@ main()
     });
 
     // npx locklift run --network local --script scripts/3-deploy-auction.ts
+    // npx locklift run --network venom_devnet --script scripts/3-deploy-auction.ts

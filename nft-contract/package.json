@@ -14,7 +14,7 @@
     "@types/node": "^18.11.2",
     "chai": "^4.3.6",
     "everscale-standalone-client": "^2.1.1",
-    "locklift": "^2.2.4",
+    "locklift": "^2.5.5",
     "prettier": "^2.7.1",
     "tip3": "https://github.com/broxus/tip3#v5",
     "ts-mocha": "^10.0.0",

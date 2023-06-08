@@ -48,4 +48,4 @@ main()
     });
 
 
-// npx locklift run --network devnet -s scripts/1-deploy-collection.ts
+// npx locklift run --network venom_devnet -s scripts/1-deploy-collection.ts
