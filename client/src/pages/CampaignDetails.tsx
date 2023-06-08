@@ -10,7 +10,7 @@ import {
   Title,
 } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
-import { ethers } from "ethers";
+import ethers  from "ethers";
 import { useLocation, useParams } from "react-router-dom";
 import { z } from "zod";
 import { DisplayCampaignsCardProps } from "../components/DisplayCampaigns";

@@ -1,5 +1,5 @@
 import { Grid, Card, Group, Button, Image, Text } from "@mantine/core";
-import { ethers } from "ethers";
+import ethers from 'ethers';
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateCampaignValidationType } from "../pages/CreateCampaign";
