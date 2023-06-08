@@ -105,12 +105,7 @@ const CreateCampaign = () => {
         initialValues={{}}
         onSubmit={async (values) => {
           try {
-            if (createCampaign) {
-              await createCampaign(values);
-
-              console.log("values", values);
-              navigate("/");
-            }
+            // mint nft
           } catch (error: any) {
             console.error(error);
             showNotification({

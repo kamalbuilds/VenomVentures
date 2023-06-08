@@ -3,7 +3,7 @@ import React from 'react';
 type Props = {
   // array of strings wit himage urls
   collectionsItems: string[] | undefined;
-  isLoading: boolean;
+  isLoading?: boolean;
   title?: string;
   listIsEmpty?: boolean;
 };
