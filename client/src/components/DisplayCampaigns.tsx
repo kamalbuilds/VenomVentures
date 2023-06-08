@@ -9,9 +9,9 @@ export interface DisplayCampaignsProps {
   title: string;
   description: string;
   image: string;
-  target: ethers.BigNumber;
-  deadline: ethers.BigNumber;
-  amountCollected: ethers.BigNumber;
+  target: string;
+  deadline: string;
+  amountCollected: string;
   owner: string;
   donators: string[];
 }
