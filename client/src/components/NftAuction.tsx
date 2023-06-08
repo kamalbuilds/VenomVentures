@@ -115,6 +115,7 @@ function NftAuction({ address, balance, standaloneProvider, venomProvider, token
   useEffect(() => {
     if (needUpdate && standaloneProvider) updateData();
   }, [needUpdate]);
+  console.log(Address , tokenWalletAddress , "hello");
   return (
     <div className="card">
       <div className="card__wrap">

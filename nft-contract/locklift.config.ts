@@ -1,6 +1,8 @@
 import { LockliftConfig } from "locklift";
 import { FactorySource } from "./build/factorySource";
 import { SimpleGiver, GiverWallet } from "./giverSettings";
+import dotenv from "dotenv";
+dotenv.config();
 
 declare global {
   const locklift: import("locklift").Locklift<FactorySource>;
@@ -9,7 +11,7 @@ declare global {
 const secret_key = process.env.secretkey || "";
 const phrase = process.env.phrase || "";
 const LOCAL_NETWORK_ENDPOINT = process.env.NETWORK_ENDPOINT || "http://localhost/graphql";
-const DEV_NET_NETWORK_ENDPOINT = process.env.DEV_NET_NETWORK_ENDPOINT || "https://gql-devnet.venom.network/graphql";
+const DEV_NET_NETWORK_ENDPOINT = process.env.DEV_NET_NETWORK_ENDPOINT || "https://jrpc-devnet.venom.foundation/";
 const VENOM_DEVNET_GIVER_ADDRESS = process.env.VENOM_DEVNET_GIVER_ADDRESS || '0:0000000000000000000000000000000000000000000000000000000000000000';
 const VENOM_DEVNET_GIVER_PHRASE = process.env.VENOM_DEVNET_GIVER_PHRASE || '';
 const VENOM_DEVNET_GIVER_KEY = process.env.VENOM_DEVNET_GIVER_KEY || '';
