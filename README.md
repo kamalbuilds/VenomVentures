@@ -26,6 +26,27 @@ Here's how VenomVentures works and the benefits it brings to both startups and v
 
 By combining these features, the VenomVentures app creates a secure and efficient environment for startups and venture capitalists to connect and facilitate funding opportunities. It revolutionizes the traditional fundraising process by introducing blockchain technology and NFT auctions, which enhance transparency, trust, and liquidity for all participants. Startups can tokenize their projects, attract investors through auctions, and gain access to liquidity. Venture capitalists can discover promising projects, participate in auctions, and trade project NFTs. Overall, VenomVentures brings transparency, efficiency, and equal opportunities to the startup funding landscape. 🌟
 
+### Flow Diagram
+
+![image](https://github.com/legendarykamal/VenomVentures/assets/95926324/c05eac9e-d3ca-4527-9132-df0abfa4761d)
+
+1. Startups tokenize their projects as NFTs on the Venom blockchain, representing ownership or investment opportunities.
+
+2. These project NFTs are listed on the VenomVentures platform for auction.
+
+3. Venture capitalists browse the available project NFTs and place bids on the ones they find promising.
+
+4. The auction mechanism allows for competitive bidding, driving up the funding amounts and generating interest among venture capitalists.
+
+5. Once the auction period ends, the highest bidder wins the project NFT and becomes the new owner or investor of the startup project.
+
+6. Throughout the entire process, all transactions, bids, and ownership transfers are recorded on the Venom blockchain, ensuring transparency and trust for all participants.
+
+7. The VenomVentures DApp integrates smart contracts, which automate the auction process. These smart contracts enforce the predefined rules and conditions of the auction, ensuring secure and fraud-resistant transactions.
+
+8. Additionally, the app provides enhanced liquidity by allowing investors to sell or trade project NFTs on secondary markets, providing opportunities for early investors to exit their positions and new investors to enter.
+
+This flow creates a secure and efficient environment for startups and venture capitalists to connect, facilitating funding opportunities in a transparent and trustworthy manner. The use of blockchain technology and NFT auctions revolutionizes the fundraising process, introducing liquidity and equal opportunities for all participants in the startup ecosystem.
 ### Getting Started
 
 To get started with VenomVentures, follow these steps:
