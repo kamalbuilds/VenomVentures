@@ -12,7 +12,7 @@ import { useVenomWallet } from '../hooks/useVenomWallet';
 
 function Home() {
   // Just a strings array. Each string is an URL of NFT image.
-  const { standaloneProvider } = useVenomWallet();
+  const { venomProvider } = useVenomWallet();
   const [collectionItems, setCollectionItems] = useState<string[] | []>([]);
   const [listIsEmpty, setListIsEmpty] = useState(false);
   // This method returns an NFT code hash by calling Collection contract. We need code hash for searching all NFTs
@@ -26,7 +26,7 @@ function Home() {
   };
   // Method, that return NFT's addresses by single query with fetched code hash
   const getNftAddresses = async (codeHash: string): Promise<Address[] | undefined> => {
-    const addresses = await standaloneProvider?.getAccountsByCodeHash({ codeHash });
+    const addresses = await venomProvider?.getAccountsByCodeHash({ codeHash });
     return addresses?.accounts;
   };
   // Main method of this component. 
@@ -49,8 +49,8 @@ function Home() {
     }
   };
   useEffect(() => {
-    if (standaloneProvider) loadNFTs(standaloneProvider);
-  }, [standaloneProvider]);
+    if (venomProvider) loadNFTs(venomProvider);
+  }, [venomProvider]);
   return (
     <div>
       <h1 className='text-2xl text-center text-indigo-400'>All Campaigns</h1>
