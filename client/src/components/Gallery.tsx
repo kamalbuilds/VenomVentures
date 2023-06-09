@@ -8,6 +8,7 @@ type Props = {
   listIsEmpty?: boolean;
 };
 function Gallery({ collectionsItems, title, listIsEmpty, isLoading }: Props) {
+  // console.log(collectionsItems,"here");
   return (
     <div className="lots">
       {title && <h1>{title}</h1>}

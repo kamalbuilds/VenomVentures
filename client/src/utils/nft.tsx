@@ -26,6 +26,14 @@ export const getNftImage = async (provider: ProviderRpcClient, nftAddress: Addre
   return json.preview?.source || '';
 };
 
+export const getNftdetails = async (provider: ProviderRpcClient, nftAddress: Address): Promise<string> => {
+  const nftContract = new provider.Contract(nftAbi, nftAddress);
+  // calling getJson function of NFT contract
+  const getJsonAnswer = (await nftContract.methods.getJson({ answerId: 0 } as never).call()) as { json: string };
+  const json = JSON.parse(getJsonAnswer.json ?? '{}') ;
+  return json || '';
+};
+
 // Returns array with NFT's images urls
 export const getCollectionItems = async (provider: ProviderRpcClient, nftAddresses: Address[]): Promise<string[]> => {
   return Promise.all(

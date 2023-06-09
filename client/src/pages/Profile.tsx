@@ -5,6 +5,7 @@ import Gallery from '../components/Gallery';
 import { COLLECTION_ADDRESS } from '../utils/constants';
 // Our implemented util
 import { getNftsByIndexes } from '../utils/nft';
+import { getNftdetails } from '../utils/nft';
 import { useVenomWallet } from '../hooks/useVenomWallet';
 
 type Props = {
@@ -85,6 +86,7 @@ function MyItems({ myCollectionItems, setMyCollectionItems }: Props) {
     if (!address) setListIsEmpty(false);
   }, [address]);
 
+  console.log(myCollectionItems,"hyhjere");
   return (
     <Gallery
       isLoading={isLoading}

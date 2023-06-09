@@ -5,12 +5,17 @@ async function main() {
     const nftjson = {
         "type": "Basic NFT",
         "name": "VenomVentures",
-        "description": "Collection of the NFT Projects for VenomVentures Platform",
+        "title": "Ukraine Refugee Home Shelter",
+        "description": "Funds for helping the ukrainian families find shelter.",
+        "target": "4 VENOM",
+        "start_date": "2023-06-04",
+        "end_date": "2025-05-01",
         "preview": {
-            "source": "https://pbs.twimg.com/media/FyPDbjdXwAApicR.png",
-            "mimetype": "image/png"
+            "source": "https://gdb.voanews.com/093a0000-0a00-0242-c033-08da001dae53_w408_r1_s.jpg",
+            "mimetype": "image/jpg"
         },
-        "external_url": "https://venomventures.vercel.app/"
+        "external_url": "https://venomventures.vercel.app/",
+        "nft_image": "https://diplomatist.com/wp-content/uploads/2022/03/The-Future-of-Ukrainian-Refugees.jpg",
     };
 
     const signer = (await locklift.keystore.getSigner("0"))!;

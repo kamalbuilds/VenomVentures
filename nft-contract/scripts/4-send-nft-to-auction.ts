@@ -2,8 +2,8 @@ import { Address, toNano, WalletTypes } from "locklift";
 
 // you can pass this parameters by cli or get them by some file reading for example or calculate an address with locklift.provider.getExpectedAddress()
 // we just hardcode it here
-const NFT_ADDRESS = new Address("0:304150265fbbe8680759cb7ec98cfa598b8a109396338b2916de1684a36a7679")
-const AUCTION_ADDRESS = new Address("0:94ebb201aa8e3d436fe1d1a9ecd80dbd46b44c11567cc69cbc11f8295f98dd32")
+const NFT_ADDRESS = new Address("0:b674db9f8b326947259bff2a3867b34b4bfc10d70ae3f218b8809d45f640bc70")
+const AUCTION_ADDRESS = new Address("0:ca1e36e0c196babe1f7395c5c5b1c9a6c7ec07d84035af792e7542330770d3a9")
 
 async function main() {
     const signer = (await locklift.keystore.getSigner("0"))!;
@@ -14,7 +14,7 @@ async function main() {
     });
     // instantiate NFT contract
     const nftInstance = await locklift.factory.getDeployedContract(
-        "NFT",
+        "Nft",
         NFT_ADDRESS
     )
     // and call a transfer method to auction from owner
@@ -38,3 +38,5 @@ main()
         console.log(e);
         process.exit(1);
     });
+
+    // npx locklift run --network venom_devnet --script scripts/4-send-nft-to-auction.ts

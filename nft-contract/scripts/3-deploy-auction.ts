@@ -38,5 +38,5 @@ main()
         process.exit(1);
     });
 
-    // npx locklift run --network local --script scripts/3-deploy-auction.ts
+    // npx locklift run --network venom_devnet --script scripts/4-send-nft-to-auction.ts
     // npx locklift run --network venom_devnet --script scripts/3-deploy-auction.ts

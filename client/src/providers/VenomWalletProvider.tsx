@@ -119,9 +119,11 @@ export const VenomWalletProvider: FC<VenomWalletProviderProps> = ({
       updateTokenWalletAddress(standaloneProvider, address);
     }
   }, [address]);
+  
   useEffect(() => {
     if (tokenWalletAddress) updateBalance();
   }, [tokenWalletAddress]);
+
   useEffect(() => {
     // connect event handler
     const off = venomConnect?.on(
@@ -154,6 +156,12 @@ export const VenomWalletProvider: FC<VenomWalletProviderProps> = ({
     setTokenWalletAddress(undefined);
 
   };
+  useEffect(() => {
+    if (venomConnect) {
+      initStandalone();
+      checkAuth(venomConnect);
+    }
+  }, [venomConnect]);
 
   return (
     <venomWalletContext.Provider

@@ -26,6 +26,7 @@ type NftAnswer = {
 
 // uncommented get methods of this component are obvious
 function NftAuction({ address, balance, standaloneProvider, venomProvider, tokenWalletAddress, checkBalance }: Props) {
+  console.log(address, tokenWalletAddress ,"nft auction pg")
   const auctionContract = standaloneProvider
     ? new standaloneProvider.Contract(auctionAbi, new Address(AUCTION_ADDRESS))
     : undefined;
