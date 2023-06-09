@@ -8,7 +8,12 @@ VenomVentures is an innovative platform built on the Venom blockchain that aims 
 
 VenomVentures NFT Collection - https://devnet.venomscan.com/accounts/0:4f852af86699f1b2b5916ad4f1f50f038c5e3cf72e91bc88db07d292719005d4
 
-Venom Devnet - TokenRoot deployed at: 0:765115273f88736b0817653fa98dad23db7bcc0f24faf07ccc159e8fc1a3298c
+Venom Devnet - TokenRoot deployed at: https://devnet.venomscan.com/accounts/0:4a059ddef3b5758f2eee4079a816b954409526b0c36f904e4c58a03821d2ae0c/
+
+VVT Tokensale deployed at: 0:9a436485e77755ba93d48879f21f0f8963a322ad6012f3b2de4fbc1239a8cc82
+
+Auction deployed at: 0:ca1e36e0c196babe1f7395c5c5b1c9a6c7ec07d84035af792e7542330770d3a9
+
 ### Features
 
 Here's how VenomVentures works and the benefits it brings to both startups and venture capitalists: 

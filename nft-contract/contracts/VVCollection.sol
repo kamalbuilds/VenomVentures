@@ -7,9 +7,9 @@ pragma AbiHeader pubkey;
 
 import '@itgold/everscale-tip/contracts/TIP4_2/TIP4_2Collection.sol';
 import '@itgold/everscale-tip/contracts/TIP4_3/TIP4_3Collection.sol';
-import './Nft.sol';
+import './VVNft.sol';
 
-contract Collection is TIP4_2Collection, TIP4_3Collection {
+contract VVCollection is TIP4_2Collection, TIP4_3Collection {
 
     /**
     * Errors

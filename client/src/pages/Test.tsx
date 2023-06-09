@@ -27,6 +27,9 @@ import { getNftsByIndexes } from '../utils/nft';
 import { getNftsDetailsByIndexes } from '../utils/nft';
 import { useVenomWallet } from '../hooks/useVenomWallet';
 import deployWallet from '../utils/deployWallet';
+import Transfer from "../components/Transfer";
+import nftabi from "../abi/NFT.abi.json";
+import { AUCTION_ADDRESS } from "../utils/constants";
 
 type Props = {
 address?: string;
@@ -72,6 +75,7 @@ const { address, venomProvider , listIsEmpty } = useVenomWallet();
 // const [listIsEmpty, setListIsEmpty] = useState(false);
 const [isLoading, setIsLoading] = useState(true);
 const [details , setDetails] = useState<any>();
+const [nftaddress, setNftAddress] = useState<any>();
 // Method, that return Index'es addresses by single query with fetched code hash
 const getAddressesFromIndex = async (codeHash: string): Promise<Address[] | undefined> => {
   const addresses = await venomProvider?.getAccountsByCodeHash({ codeHash });
@@ -111,6 +115,18 @@ const loadNFTs = async (provider: ProviderRpcClient, ownerAddress: string) => {
   }
 };
 
+const loadnftinstance = async (provider: ProviderRpcClient, nftAddress: string) => {
+  setIsLoading(true);
+  // setListIsEmpty(false);
+  try {
+    // Take a salted code
+    
+    const nftContract = new provider.Contract(nftAbi, nftAddress);
+    console.log(nftContract,"nftContract");
+  } catch (e) {
+    console.error(e);
+  } 
+};
 useEffect(() => {
   deployWallet();
   console.log("deployed wallet");
@@ -118,19 +134,37 @@ useEffect(() => {
 useEffect(() => {
   if (address && venomProvider) loadNFTs(venomProvider, address);
   // if (!address) setListIsEmpty(false);
+  if( nftaddress && venomProvider) loadnftinstance(venomProvider, nftaddress);
 }, [address]);
 
-console.log(address,venomProvider,"hyhjere");
+useEffect(() => {
+  if( nftaddress && venomProvider) loadnftinstance(venomProvider, nftaddress);
+}, [nftaddress]);
+
 const { id } = useParams();
 //   const data = details?.[id];
 console.log({ id });
 const data = details?.[id];
-console.log(data,"jai bajarangbali");
+console.log(details,"jai bajarangbali");
 
 // get campaign by id
 
-const donateCampaign  =  "";
-
+const nfttoauction = async () => {
+  showNotification({
+    title: "NFT is being sent to auction",
+    message: "Please wait a few seconds",
+  });
+  await nftContract.methods.transfer({
+    to: AUCTION_ADDRESS,
+    sendGasTo: someAccount.address,
+    // take attention! Next field is important for calling our onNftTransfer callback!
+    // you may lose your NFT if you don't set up callback for auction here!
+    callbacks: [[AUCTION_ADDRESS, {value: toNano(0.1), payload: ""}]] 
+}).send({
+    from: someAccount.address,
+    amount: toNano(2)
+})
+}
 console.log( data );
 
 const typedState = {
@@ -140,6 +174,7 @@ const typedState = {
   deadline: new Date(data?.deadline),
 } as DisplayCampaignsCardProps;
 
+console.log(typedState,"typedState");
 console.log({ typedState });
 const percent = calculateBarPercentage(
   parseFloat(typedState.target),
@@ -225,39 +260,15 @@ return (
     </div>
 
     <div>
-      <div className="my-6">
+      <div className="my-2">
         {!address ? (
           <Text>You need to connect your wallet to fund this campaign</Text>
         ) : (
           <>
-          <FundForm
-            submitText="Fund Campaign"
-            schema={CreateFundValidation}
-            initialValues={{}}
-            onSubmit={async (values) => {
-              try {
-                
-                // fund campaign
-
-                showNotification({
-                  title: "Successfully funded",
-                  message: "Thank you for funding this campaign",
-                  color: "green",
-                });
-              } catch (error: any) {
-                console.log({ error: error });
-                showNotification({
-                  title: "Something went wrong",
-                  message: "Failed to fund",
-                  color: "red",
-                });
-                return {
-                  [FORM_ERROR]: error.reason,
-                };
-              }
-            }}
-          />
-          <Button onClick={donateCampaign} className="my-6 mb-6 justify-center text-center">Put NFT to Auction</Button>
+          <Transfer/>
+          <input value={nftaddress} onChange={(e)=>setNftAddress(e.target.value)} className="border-2 w-80 border-gray-300 p-2 rounded-l mx-16" placeholder="Enter NFT Address"/>
+          <br />
+          <Button onClick={nfttoauction} className="mx-36 my-4">Put NFT to Auction</Button>
           </>
         )}
       </div>

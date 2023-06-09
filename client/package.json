@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@eversdk/core": "^1.43.1",
+    "@eversdk/lib-web": "^1.43.1",
     "@hookform/resolvers": "^2.9.10",
     "@livepeer/react": "^2.2.2",
     "@mantine/core": "^5.10.3",
