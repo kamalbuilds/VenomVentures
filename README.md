@@ -8,6 +8,7 @@ VenomVentures is an innovative platform built on the Venom blockchain that aims 
 
 VenomVentures NFT Collection - https://devnet.venomscan.com/accounts/0:4f852af86699f1b2b5916ad4f1f50f038c5e3cf72e91bc88db07d292719005d4
 
+Venom Devnet - TokenRoot deployed at: 0:765115273f88736b0817653fa98dad23db7bcc0f24faf07ccc159e8fc1a3298c
 ### Features
 
 Here's how VenomVentures works and the benefits it brings to both startups and venture capitalists: 
@@ -15,6 +16,8 @@ Here's how VenomVentures works and the benefits it brings to both startups and v
 1. 🚀 **Tokenizing Projects**: Startups can tokenize their projects as NFTs, representing ownership or investment opportunities. By tokenizing their projects, startups can provide a clear and transparent representation of their business and the potential value it offers to investors.
 
 2. 🎯 **Project Auctions**: The app enables startups to conduct NFT auctions, where they can showcase their projects and attract potential investors. Through the auction mechanism, startups can generate interest and competition among venture capitalists, leading to potentially higher funding amounts.
+
+![image](https://github.com/legendarykamal/VenomVentures/assets/95926324/3231c480-e26e-47e3-a948-68c518f73e70)
 
 3. 💼 **Investor Participation**: Venture capitalists can participate in the funding process by placing bids on project NFTs they find promising. This allows them to express their interest and commitment to invest in specific projects. The bidding process introduces a fair and transparent way for venture capitalists to compete for investment opportunities.
 

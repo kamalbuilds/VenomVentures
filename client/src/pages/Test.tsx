@@ -136,7 +136,7 @@ console.log( data );
 const typedState = {
   ...data,
   target: "5",
-  amountCollected: "2",
+  amountCollected: "0",
   deadline: new Date(data?.deadline),
 } as DisplayCampaignsCardProps;
 
@@ -188,7 +188,7 @@ return (
       <Card radius="xl" p={0}>
         <Title p={15} order={2}>
           {typedState.donators?.length}
-          1
+          0
         </Title>
         <Text bg="gray" p={15} className="rounded-lg mt-1 w-full">
           Total Backers

@@ -25,11 +25,10 @@ type NftAnswer = {
 };
 
 // uncommented get methods of this component are obvious
-function NftAuction({ address, balance, standaloneProvider, venomProvider, checkBalance }: Props) {
+function NftAuction({ address, balance, standaloneProvider, venomProvider, tokenWalletAddress , checkBalance }: Props) {
   // console.log(address, tokenWalletAddress ,"nft auction pg");
-  const tokenWalletAddress ="0:6bf25d251adabf1268a8870ad1b45d46fcf782ef9f1bfa7c16032484d3e54ac7";
-  const auctionContract = standaloneProvider
-    ? new standaloneProvider.Contract(auctionAbi, new Address(AUCTION_ADDRESS))
+  const auctionContract = venomProvider
+    ? new venomProvider.Contract(auctionAbi, new Address(AUCTION_ADDRESS))
     : undefined;
   // Some state variables from Auction smart contract. You can just check ABI.
   const [nftUrl, setNftUrl] = useState<string | undefined>();
@@ -55,6 +54,7 @@ function NftAuction({ address, balance, standaloneProvider, venomProvider, check
   // loadNFT - get NFT address from Auction contract and get data from NFT contract
   const loadNft = async (provider: ProviderRpcClient) => {
     const nftAddress = await getNftAddress();
+    console.log(nftAddress,"nft address");
     if (!nftAddress) return;
     const _nftUrl = await getNftUrl(provider, nftAddress);
     if (!_nftUrl) return;
@@ -112,16 +112,16 @@ function NftAuction({ address, balance, standaloneProvider, venomProvider, check
   }, [isCopied]);
   // Main hooks for loading and updating our info
   useEffect(() => {
-    if (standaloneProvider) loadAuctionInfo(standaloneProvider);
-  }, [standaloneProvider]);
+    if (venomProvider) loadAuctionInfo(venomProvider);
+  }, [venomProvider]);
   useEffect(() => {
-    if (needUpdate && standaloneProvider) updateData();
+    if (needUpdate && venomProvider) updateData();
   }, [needUpdate]);
   console.log(Address , tokenWalletAddress , "hello");
   return (
     <div className="card">
       <div className="card__wrap">
-        <h1>Welcome to VenomVentures</h1>
+        <h1>Win the Auctions to show your Support to the projects</h1>
         <div className="item-info">
           <span>Ends:</span>
           {endTime && <b>{endTime} UTC</b>}
@@ -130,7 +130,7 @@ function NftAuction({ address, balance, standaloneProvider, venomProvider, check
         <div className="info-group">
           <div className="item-info">
             <span>Last Bid</span>
-            {currenBid && <b>{currenBid} TST</b>}
+            {currenBid && <b>{currenBid} VENOM</b>}
           </div>
           <div className="item-info item-info_copy">
             {currentWinner && <p id="copyText">{currentWinner}</p>}
@@ -144,7 +144,7 @@ function NftAuction({ address, balance, standaloneProvider, venomProvider, check
           <AuctionSendForm
             address={address}
             balance={balance}
-            venomProvider={venomProvider}
+            standaloneProvider={standaloneProvider}
             tokenWalletAddress={tokenWalletAddress}
             setNeedUpdate={setNeedUpdate}
           />

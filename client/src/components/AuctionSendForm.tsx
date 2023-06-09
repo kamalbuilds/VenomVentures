@@ -11,11 +11,11 @@ import { AUCTION_ADDRESS } from '../utils/constants';
 type Props = {
   address: string;
   balance: string | undefined;
-  venomProvider: ProviderRpcClient | undefined;
+  standaloneProvider: ProviderRpcClient | undefined;
   tokenWalletAddress: string;
   setNeedUpdate: (value: boolean) => void;
 };
-function AuctionSendForm({ address, balance, venomProvider, tokenWalletAddress, setNeedUpdate }: Props) {
+function AuctionSendForm({ address, balance, standaloneProvider, tokenWalletAddress, setNeedUpdate }: Props) {
   // amount of tokens to bet with helpers to increase/decrease it and change
   // we need it just for our layout (input firld with increase/decrease buttons)
   const [tokenAmount, setTokenAmount] = useState<number | undefined>(0);
@@ -35,9 +35,9 @@ function AuctionSendForm({ address, balance, venomProvider, tokenWalletAddress, 
   // main function of all dAPP! :)
   const bet = async () => {
     try {
-      if (!venomProvider || !tokenAmount) return;
+      if (!standaloneProvider || !tokenAmount) return;
       // TokenWallet address was passed here from somewhere (from NftAuction component)
-      const tokenWalletContract = new venomProvider.Contract(tokenWalletAbi, new Address(tokenWalletAddress));
+      const tokenWalletContract = new standaloneProvider.Contract(tokenWalletAbi, new Address(tokenWalletAddress));
       // Just a common call of smart contract, nothing special and pretty easy
       // The only one difference - usage of .send() function
       // When we use send(), firstly we call our venom wallet (logged user's wallet) and then venom wallet will call our target contract internally (by sendTransaction method)
