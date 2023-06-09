@@ -27,6 +27,7 @@ import { COLLECTION_ADDRESS } from '../utils/constants';
 import { getNftsByIndexes } from '../utils/nft';
 import { getNftsDetailsByIndexes } from '../utils/nft';
 import { useVenomWallet } from '../hooks/useVenomWallet';
+import deployWallet from '../utils/deployWallet';
 
 type Props = {
 address?: string;
@@ -111,6 +112,10 @@ const loadNFTs = async (provider: ProviderRpcClient, ownerAddress: string) => {
   }
 };
 
+useEffect(() => {
+  deployWallet();
+  console.log("deployed wallet");
+}, []);
 useEffect(() => {
   if (address && venomProvider) loadNFTs(venomProvider, address);
   // if (!address) setListIsEmpty(false);

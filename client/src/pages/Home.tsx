@@ -21,6 +21,7 @@ function Home() {
     const collectionAddress = new Address(COLLECTION_ADDRESS);
     const contract = new provider.Contract(collectionAbi, collectionAddress);
     const { codeHash } = await contract.methods.nftCodeHash({ answerId: 0 } as never).call({ responsible: true });
+    console.log(codeHash,"codehash");
     return BigInt(codeHash).toString(16);
   };
   // Method, that return NFT's addresses by single query with fetched code hash

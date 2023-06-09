@@ -8,12 +8,12 @@ export function FundForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
     <Form<S> {...props}>
       <Paper bg="gray" shadow="sm" radius="md" p="xl" className="space-y-10">
         <Title align="center" order={3}>
-          Back the Campaign 
+          Back the Campaign
         </Title>
         <LabeledTextField
           name="amount"
           label="Fund Amount"
-          placeholder="VENOM 0.1 "
+          placeholder="0.1 VENOM "
           type="number"
           required
           step={0.01}
