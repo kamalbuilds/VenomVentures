@@ -186,6 +186,7 @@ return (
       <Card radius="xl" p={0}>
         <Title p={15} order={2}>
           {typedState.donators?.length}
+          1
         </Title>
         <Text bg="gray" p={15} className="rounded-lg mt-1 w-full">
           Total Backers

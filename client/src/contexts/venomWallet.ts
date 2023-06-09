@@ -16,7 +16,9 @@ export interface VenomWalletContext {
   updateBalance: () => Promise<void>;
   standaloneProvider?: ProviderRpcClient;
   balance?: string,
-  tokenWalletAddress?: string
+  tokenWalletAddress?: string,
+  details?: any,
+  listIsEmpty?: boolean,
 }
 
 export const venomWalletContext = createContext<VenomWalletContext>({

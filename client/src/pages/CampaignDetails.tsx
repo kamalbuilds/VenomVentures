@@ -177,6 +177,7 @@ const CampaignDetails = ({ myCollectionItems, setMyCollectionItems }: Props) => 
 
           <Card radius="xl" p={0}>
             <Title p={15} order={2}>
+              "1"
               {typedState.donators?.length}
             </Title>
             <Text bg="gray" p={15} className="rounded-lg mt-1 w-full">

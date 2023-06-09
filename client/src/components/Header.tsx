@@ -30,15 +30,14 @@ const Header = () => {
   }, []);
 
   return (
-    <HeaderMantine height={60} p="xs">
+    <HeaderMantine height={80} p="xs">
       <div className="flex">
-        <div className="flex justify-center w-[170px]">
-          <Link to={"/"}>
-            <img src={ologo} className="h-10 w-auto" alt="Logo" />
-          </Link>
+        <div className="fixed left-8">
+            <img src={ologo} className="h-12 w-auto" alt="Logo" />
         </div>
 
         <div className="flex justify-between w-full">
+          <div className="flex fixed left-20 w-full">
           <TextInput
             rightSection={
               <ActionIcon>
@@ -51,6 +50,7 @@ const Header = () => {
             value={""}
             onChange={(e) => {}}
           />
+          </div>
           <div className="flex items-center">
             {address ? (
               <>
