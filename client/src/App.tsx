@@ -81,7 +81,7 @@ const App = () => {
               <AppShell padding="md" navbar={<Navbar />} header={<Header />} >
                 <Routes>
                   <Route path="/" element={<LandingPage />} />
-                  <Route path="/dashboard" element={<Home standaloneProvider= {standaloneProvider}/>} />
+                  <Route path="/dashboard" element={<Home />} />
                   <Route path="/profile" element={
                   <Profile 
                     myCollectionItems={myCollectionItems}

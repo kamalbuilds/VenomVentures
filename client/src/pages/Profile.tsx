@@ -41,7 +41,7 @@ const saltCode = async (provider: ProviderRpcClient, ownerAddress: string) => {
   return saltedCode;
 };
 
-function MyItems({ myCollectionItems, setMyCollectionItems }: Props) {
+function Profile({ myCollectionItems, setMyCollectionItems }: Props) {
   const { address, venomProvider } = useVenomWallet();
   const [listIsEmpty, setListIsEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +49,7 @@ function MyItems({ myCollectionItems, setMyCollectionItems }: Props) {
   // Method, that return Index'es addresses by single query with fetched code hash
   const getAddressesFromIndex = async (codeHash: string): Promise<Address[] | undefined> => {
     const addresses = await venomProvider?.getAccountsByCodeHash({ codeHash });
+    console.log(addresses,"addresses kamal");
     return addresses?.accounts;
   };
 
@@ -86,7 +87,7 @@ function MyItems({ myCollectionItems, setMyCollectionItems }: Props) {
     if (!address) setListIsEmpty(false);
   }, [address]);
 
-  console.log(myCollectionItems,"hyhjere");
+  console.log(myCollectionItems,address,venomProvider,"hyhjere");
   return (
     <Gallery
       isLoading={isLoading}
@@ -97,4 +98,4 @@ function MyItems({ myCollectionItems, setMyCollectionItems }: Props) {
   );
 }
 
-export default MyItems;
+export default Profile;
