@@ -42,7 +42,8 @@ const saltCode = async (provider: ProviderRpcClient, ownerAddress: string) => {
   return saltedCode;
 };
 
-function Profile({ myCollectionItems, setMyCollectionItems }: Props) {
+function Profile() {
+  const [myCollectionItems, setMyCollectionItems] = useState<string[] | []>([]);
   const { address, venomProvider } = useVenomWallet();
   const [listIsEmpty, setListIsEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(true);

@@ -16,7 +16,6 @@ import { DisplayCampaignsCardProps } from "../components/DisplayCampaigns";
 import { FORM_ERROR } from "../components/Form";
 import { FundForm } from "../components/FundForm";
 import { calculateBarPercentage, daysLeft } from "../utils";
-import {Demonstration} from "../components/demonstration/Demonstration";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import { Address, ProviderRpcClient } from 'everscale-inpage-provider';
@@ -157,8 +156,6 @@ return (
           src={typedState.nft_image}
           alt="Campaign"
         />
-
-        <Demonstration />
         <div className="flex space-x-5 items-center my-5">
           <Progress value={percent} className="w-full" />
 

@@ -15,10 +15,8 @@ import tokenWalletAbi from '../abi/TokenWallet.abi.json';
 import { TOKEN_ROOT_ADDRESS } from '../utils/constants';
 
 
-type Props = {
-  venomConnect: VenomConnect | undefined;
-};
-function Auction({ venomConnect }: Props) {
+
+function Auction() {
 
   const { address , venomProvider , standaloneProvider , balance , tokenWalletAddress , updateBalance } = useVenomWallet();
   console.log(venomProvider , standaloneProvider , balance, tokenWalletAddress  ,"h")
