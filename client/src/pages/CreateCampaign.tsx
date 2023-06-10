@@ -2,98 +2,21 @@
 import { useState } from "react";
 import { showNotification } from "@mantine/notifications";
 import { z } from "zod";
-import DateForm from "../components/DateForm";
-import Form, { FormProps, FORM_ERROR } from "../components/Form";
-import LabeledTextField from "../components/FormField";
-import LabeledTextAreaField from "../components/TextAreaForm";
-import { NFTStorage, File } from 'nft.storage';
-import {
-  Address,
-  ProviderRpcClient,
-  Subscriber,
-} from "everscale-inpage-provider";
-import CollectionAbi from "../abi/Collection.abi.json";
+import { Title } from "@mantine/core";
+import { useForm } from "react-hook-form";
+import { NFTStorage  } from "nft.storage";
+import { useVenomWallet } from "../hooks/useVenomWallet";
 import {COLLECTION_ADDRESS} from "../utils/constants";
-import { useState } from "react";
-
-export function CampaignForm<S extends z.ZodType<any, any>>(
-  props: FormProps<S>
-) {
-  return (
-    <Form<S> {...props}>
-      <Container>
-        <Paper shadow="sm" radius="md" p="xl" className="space-y-10">
-          <Grid>
-            <Grid.Col md={6}>
-              <LabeledTextField
-                name="name"
-                label="Your Name"
-                placeholder="write your name"
-                required
-              />
-            </Grid.Col>
-            <Grid.Col md={6}>
-              <LabeledTextField
-                name="title"
-                label="Campaign Title"
-                placeholder="Write a Title"
-                required
-              />
-            </Grid.Col>
-            <Grid.Col md={12}>
-              <LabeledTextAreaField
-                name="description"
-                label="Information"
-                placeholder="Give some information about your campaign"
-                required
-                minRows={5}
-              />
-            </Grid.Col>
-            <Grid.Col md={6}>
-              <LabeledTextField
-                name="goal"
-                label="Goal"
-                placeholder="VENOM 0.005 "
-                type="number"
-                required
-                precision={10}
-                removeTrailingZeros
-              />
-            </Grid.Col>
-            <Grid.Col md={6}>
-              <DateForm
-                type="date"
-                name="deadline"
-                label="End Date"
-                placeholder="Pick a date"
-                required
-              />
-            </Grid.Col>
-            <Grid.Col md={12}>
-              <LabeledTextField
-                name="image"
-                label="Campaign Image "
-                placeholder="Place image url to represent your campaign"
-                required
-              />
-            </Grid.Col>
-          </Grid>
-        </Paper>
-      </Container>
-    </Form>
-  );
-}
-
-export const CreateCampaignValidation = z.object({
+import CollectionAbi from "../abi/Collection.abi.json";
+import { Address } from "everscale-inpage-provider";
+const CreateCampaignValidation = z.object({
   name: z.string().min(4),
   title: z.string().min(4),
   description: z.string().min(4),
-  goal: z.number().min(0.0000001),
+  target: z.number().min(0.0000001),
   deadline: z.date(),
   image: z.string().url(),
 });
-import { NFTStorage, File } from 'nft.storage';
-
 
 const CreateCampaign = () => {
   const {
@@ -102,7 +25,8 @@ const CreateCampaign = () => {
     formState: { errors },
   } = useForm();
   const [formError, setFormError] = useState(null);
-
+  const { venomProvider , address} = useVenomWallet();
+  const signeraddress = address;
   const mintnft = async (data) => {
     try {
         // const BaseURL = "https://venomventures.vercel.app/api";
@@ -156,31 +80,31 @@ const CreateCampaign = () => {
         .call();
       console.log({ id });
 
-      const subscriber = new Subscriber(venomProvider);
-      contract
-        .events(subscriber)
-        .filter((event : any) => event.event === "tokenCreated")
-        .on(async (event : any) => {
-          const { nft: nftAddress } = await contract.methods
-            .nftAddress({ answerId: 0, id: id })
-            .call();
+      // const subscriber = new Subscriber(venomProvider);
+      // contract
+      //   .events(subscriber)
+      //   .filter((event : any) => event.event === "tokenCreated")
+      //   .on(async (event : any) => {
+      //     const { nft: nftAddress } = await contract.methods
+      //       .nftAddress({ answerId: 0, id: id })
+      //       .call();
 
-            // const res = await fetch(`${BaseURL}/createnft`, {
-            //   method: "POST",
-            //   headers: {
-            //     "Content-Type": "application/json",
-            //   },
-            //   body: JSON.stringify({
-            //     nft_address: nftAddress._address,
-            //     tokenId: event.data.tokenId,
-            //     collection_name: data.collection,
-            //     json: nftjson,
-            //     owner: signeraddress,
-            //   }),
-            // });
+      //       // const res = await fetch(`${BaseURL}/createnft`, {
+      //       //   method: "POST",
+      //       //   headers: {
+      //       //     "Content-Type": "application/json",
+      //       //   },
+      //       //   body: JSON.stringify({
+      //       //     nft_address: nftAddress._address,
+      //       //     tokenId: event.data.tokenId,
+      //       //     collection_name: data.collection,
+      //       //     json: nftjson,
+      //       //     owner: signeraddress,
+      //       //   }),
+      //       // });
 
-          console.log(res.data);
-        });
+      //     console.log(res.data);
+        // });
       const outputs = await contract.methods.mintNft({ json: nftjson }).send({
         from: new Address(signeraddress),
         amount: "1000000000",
