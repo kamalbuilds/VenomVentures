@@ -34,7 +34,7 @@ const Header = () => {
       <div className="flex">
         <div className="flex justify-center w-[170px]">
           <div>
-            <img src={ologo} className="h-10 w-auto" />
+            <img src={ologo} className="h-10 w-auto" alt="Logo" />
           </div>
         </div>
 
@@ -51,23 +51,22 @@ const Header = () => {
             value={""}
             onChange={(e) => {}}
           />
-          <header>
+          <div className="flex items-center">
             {address ? (
               <>
-                <p>{shortAddress(address)}</p>
-                <a className="logout" onClick={disconnect}>
+                <p className="mr-4">{shortAddress(address)}</p>
+                <button className="logout" onClick={disconnect}>
                   <img src={LogOutImg} alt="Log out" />
-                </a>
+                </button>
               </>
             ) : (
-              <a className="btn" onClick={connect}>
+              <button className="btn" onClick={connect}>
                 Connect wallet
-              </a>
+              </button>
             )}
-        </header>
+          </div>
 
           <div className="flex space-x-5 pr-5">
-
             <Link to="/profile">
               <Avatar src={null} alt="it's me" radius="xl" />
             </Link>
