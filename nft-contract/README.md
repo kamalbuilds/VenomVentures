@@ -1,10 +1,6 @@
-# Venom In Action - Simple Tokensale
+# Venom Contracts
 
- > This repository was built for [Venom In Action. Simple NFT auction](https://docs.venom.foundation/build/development-guides/how-to-create-your-own-non-fungible-tip-4-token/venom-in-action/simple-nft-auction) guide of [How to create your own non-fungible TIP-4 token](https://docs.venom.foundation/build/development-guides/how-to-create-your-own-non-fungible-tip-4-token) series
- 
-This project is a sample, designed to help you to sort out with TIP-4 standard and NFT on Venom Network. You will explore how to perform some operations with TIP-4 on-chain.
-
->! Not ready for production
+Auction deployed at: 0:ca1e36e0c196babe1f7395c5c5b1c9a6c7ec07d84035af792e7542330770d3a9
 
 ## Built with
 

@@ -2,7 +2,8 @@ import { Address, getRandomNonce, WalletTypes } from "locklift";
 
 // you can pass this parameter by cli or get them by some file reading for example or calculate an address with locklift.provider.getExpectedAddress()
 // we just hardcode it here
-const TOKEN_ROOT_ADDRESS = new Address("0:72150b21cc717202dedfb787068970e9d78b6a7e15447f3c1695420768f9aafb")
+// WVENOM
+const TOKEN_ROOT_ADDRESS = new Address("0:6bf25d251adabf1268a8870ad1b45d46fcf782ef9f1bfa7c16032484d3e54ac7")
 
 async function main() {
     const signer = (await locklift.keystore.getSigner("0"))!;
