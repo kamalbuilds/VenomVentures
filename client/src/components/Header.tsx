@@ -33,9 +33,9 @@ const Header = () => {
     <HeaderMantine height={60} p="xs">
       <div className="flex">
         <div className="flex justify-center w-[170px]">
-          <div>
+          <Link to={"/"}>
             <img src={ologo} className="h-10 w-auto" alt="Logo" />
-          </div>
+          </Link>
         </div>
 
         <div className="flex justify-between w-full">

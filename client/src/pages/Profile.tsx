@@ -9,7 +9,6 @@ import { useVenomWallet } from '../hooks/useVenomWallet';
 
 type Props = {
   address?: string;
-  venomProvider: ProviderRpcClient | undefined;
   myCollectionItems: string[] | undefined;
   setMyCollectionItems: (value: string[] | undefined) => void;
 };
