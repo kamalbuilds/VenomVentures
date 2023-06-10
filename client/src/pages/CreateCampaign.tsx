@@ -1,7 +1,6 @@
 // @ts-nocheck
-import { Alert, Container, Grid, Paper, Title } from "@mantine/core";
+import { useState } from "react";
 import { showNotification } from "@mantine/notifications";
-import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import DateForm from "../components/DateForm";
 import Form, { FormProps, FORM_ERROR } from "../components/Form";
@@ -93,19 +92,17 @@ export const CreateCampaignValidation = z.object({
   deadline: z.date(),
   image: z.string().url(),
 });
+import { NFTStorage, File } from 'nft.storage';
 
-export type CreateCampaignValidationType = z.infer<
-  typeof CreateCampaignValidation
->;
 
-const CreateCampaign = (venomProvider : any, signeraddress : string) => {
-  // call the createCampaign function here
-  const navigate = useNavigate();
+const CreateCampaign = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [formError, setFormError] = useState(null);
 
-  // adding state to store the minted nft
-  const [nftAddress, setNftAddress] = useState("");
-  const [tokenId, setTokenId] = useState("");
-  
   const mintnft = async (data) => {
     try {
         // const BaseURL = "https://venomventures.vercel.app/api";
@@ -144,7 +141,7 @@ const CreateCampaign = (venomProvider : any, signeraddress : string) => {
             ),
           },
         ],
-        attributes: data.properties.filter((e) => e.type.length > 0),
+        // attributes: data.properties.filter((e) => e.type.length > 0),
         external_url: "https://venomventures.vercel.app/",
         nft_image: ipfs_image,
         collection_name: data.collection,
@@ -195,34 +192,136 @@ const CreateCampaign = (venomProvider : any, signeraddress : string) => {
     }
   };
 
+  const onSubmit = async (values) => {
+    try {
+      console.log(values,"value")
+      const mint = await mintnft(values);
+    } catch (error) {
+      console.error(error);
+      setFormError("Failed to create campaign");
+      showNotification({
+        title: "Something went wrong",
+        message: "Failed to create campaign",
+        color: "red",
+      });
+    }
+  };
+
   return (
     <div>
       <Title align="center" color="orange" order={1}>
         Start a Campaign
       </Title>
-      <CampaignForm
-        submitText="Submit new campaign"
-        schema={CreateCampaignValidation}
-        initialValues={{}}
-        onSubmit={async (values) => {
-          console.log(values,"v");
-          try {
-            // mint nft
-            console.log(values,"vsdf");
-            mintnft(values);
-          } catch (error: any) {
-            console.error(error);
-            showNotification({
-              title: "Something went wrong",
-              message: "Failed to create campaign",
-              color: "red",
-            });
-            return {
-              [FORM_ERROR]: error.toString(),
-            };
-          }
-        }}
-      />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="container mx-auto">
+          <div className="shadow-sm rounded-md p-8 space-y-10">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="col-span-1">
+                <div className="mb-4">
+                  <label htmlFor="name" className="block mb-2 font-semibold">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="Write your name"
+                    {...register("name", { required: true })}
+                  />
+                  {errors.name && (
+                    <span className="text-red-500">Name is required</span>
+                  )}
+                </div>
+              </div>
+              <div className="col-span-1">
+                <div className="mb-4">
+                  <label htmlFor="title" className="block mb-2 font-semibold">
+                    Campaign Title
+                  </label>
+                  <input
+                    type="text"
+                    id="title"
+                    placeholder="Write a Title"
+                    {...register("title", { required: true })}
+                  />
+                  {errors.title && (
+                    <span className="text-red-500">Title is required</span>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label htmlFor="description" className="block mb-2 font-semibold">
+                Information
+              </label>
+              <textarea
+                id="description"
+                placeholder="Give some information about your campaign"
+                rows={5}
+                {...register("description", { required: true })}
+              />
+              {errors.description && (
+                <span className="text-red-500">Description is required</span>
+              )}
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="col-span-1">
+                <div className="mb-4">
+                  <label htmlFor="target" className="block mb-2 font-semibold">
+                    Goal
+                  </label>
+                  <input
+                    type="number"
+                    id="target"
+                    placeholder="ETH 0.005"
+                    {...register("target", { required: true })}
+                  />
+                  {errors.target && (
+                    <span className="text-red-500">Target is required</span>
+                  )}
+                </div>
+              </div>
+              <div className="col-span-1">
+                <div className="mb-4">
+                  <label htmlFor="deadline" className="block mb-2 font-semibold">
+                    End Date
+                  </label>
+                  <input
+                    type="date"
+                    id="deadline"
+                    placeholder="Pick a date"
+                    {...register("deadline", { required: true })}
+                  />
+                  {errors.deadline && (
+                    <span className="text-red-500">Deadline is required</span>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label htmlFor="image" className="block mb-2 font-semibold">
+                Campaign Image
+              </label>
+              <input
+                type="text"
+                id="image"
+                placeholder="Place image url to represent your campaign"
+                {...register("image", { required: true })}
+              />
+              {errors.image && (
+                <span className="text-red-500">Image is required</span>
+              )}
+            </div>
+            <div className="mb-4">
+              <button type="submit" className="btn-primary">
+                Submit new campaign
+              </button>
+            </div>
+            {formError && (
+              <Alert type="error" title="Something went wrong" description={formError} />
+            )}
+          </div>
+        </div>
+      </form>
     </div>
   );
 };
