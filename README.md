@@ -4,15 +4,15 @@
   <img src="https://github.com/legendarykamal/VenomVentures/assets/95926324/88e86cb7-0d44-4f4d-a65b-64ab5bf1bd00" alt="logo" />
 </p>
 
-VenomVentures is an innovative platform built on the Venom blockchain that aims to connect startups and venture capitalists, providing them with a secure and efficient environment to facilitate funding opportunities. By leveraging the power of blockchain technology and utilizing NFT auctions, VenomVentures revolutionizes the fundraising process and enhances transparency, trust, and liquidity for all participants.
+### VenomVentures is an innovative platform built on the Venom blockchain that aims to connect startups and venture capitalists, providing them with a secure and efficient environment to facilitate funding opportunities. By leveraging the power of blockchain technology and utilizing NFT auctions, VenomVentures revolutionizes the fundraising process and enhances transparency, trust, and liquidity for all participants.
 
 VenomVentures NFT Collection - https://devnet.venomscan.com/accounts/0:4f852af86699f1b2b5916ad4f1f50f038c5e3cf72e91bc88db07d292719005d4
 
 Venom Devnet - TokenRoot deployed at: https://devnet.venomscan.com/accounts/0:4a059ddef3b5758f2eee4079a816b954409526b0c36f904e4c58a03821d2ae0c/
 
-VVT Tokensale deployed at: 0:9a436485e77755ba93d48879f21f0f8963a322ad6012f3b2de4fbc1239a8cc82
+VVT Tokensale deployed at: https://devnet.venomscan.com/accounts/0:9a436485e77755ba93d48879f21f0f8963a322ad6012f3b2de4fbc1239a8cc82
 
-Auction deployed at: 0:ca1e36e0c196babe1f7395c5c5b1c9a6c7ec07d84035af792e7542330770d3a9
+Auction deployed at: https://devnet.venomscan.com/accounts/0:ca1e36e0c196babe1f7395c5c5b1c9a6c7ec07d84035af792e7542330770d3a9
 
 ### Features
 
@@ -38,23 +38,26 @@ By combining these features, the VenomVentures app creates a secure and efficien
 
 ![image](https://github.com/legendarykamal/VenomVentures/assets/95926324/c05eac9e-d3ca-4527-9132-df0abfa4761d)
 
-1. Startups tokenize their projects as NFTs on the Venom blockchain, representing ownership or investment opportunities.
+1. Startups or Individuals say A tokenize their projects as NFTs on the Venom blockchain, representing ownership or investment opportunities that they wish to get.
 
-2. These project NFTs are listed on the VenomVentures platform for auction.
+2. Now, Other users can fund their projects and make the project grow also termed as Quadratic funding. They can do so by visiting the Dashboard and clicking on the respt proj NFTs and then clicking on Fund projects whichever they love.
 
-3. Venture capitalists browse the available project NFTs and place bids on the ones they find promising.
+3. Now These project NFTs can also be listed on the VenomVentures platform for auction inorder to attract VC's and other Investors.
 
-4. The auction mechanism allows for competitive bidding, driving up the funding amounts and generating interest among venture capitalists.
+4. Venture capitalists browse the available project NFTs and place bids on the ones they find promising.
 
-5. Once the auction period ends, the highest bidder wins the project NFT and becomes the new owner or investor of the startup project.
+5. The auction mechanism allows for competitive bidding, driving up the funding amounts and generating interest among venture capitalists.
 
-6. Throughout the entire process, all transactions, bids, and ownership transfers are recorded on the Venom blockchain, ensuring transparency and trust for all participants.
+6. Once the auction period ends, the highest bidder wins the project NFT and becomes the new  investor of the startup project. The winner also gets exclusive features from the startup.
 
-7. The VenomVentures DApp integrates smart contracts, which automate the auction process. These smart contracts enforce the predefined rules and conditions of the auction, ensuring secure and fraud-resistant transactions.
+7. Throughout the entire process, all transactions, bids, and ownership transfers are recorded on the Venom blockchain, ensuring transparency and trust for all participants.
 
-8. Additionally, the app provides enhanced liquidity by allowing investors to sell or trade project NFTs on secondary markets, providing opportunities for early investors to exit their positions and new investors to enter.
+8. The VenomVentures DApp integrates smart contracts, which automate the auction process. These smart contracts enforce the predefined rules and conditions of the auction, ensuring secure and fraud-resistant transactions.
+
+9. Additionally, the app provides enhanced liquidity by allowing investors to sell or trade project NFTs on secondary markets, providing opportunities for early investors to exit their positions and new investors to enter.
 
 This flow creates a secure and efficient environment for startups and venture capitalists to connect, facilitating funding opportunities in a transparent and trustworthy manner. The use of blockchain technology and NFT auctions revolutionizes the fundraising process, introducing liquidity and equal opportunities for all participants in the startup ecosystem.
+
 ### Getting Started
 
 To get started with VenomVentures, follow these steps:
@@ -71,7 +74,6 @@ To get started with VenomVentures, follow these steps:
 docker run -d --name local-node -e USER_AGREEMENT=yes -p80:80 tonlabs/local-node
 
 npm run test -- nft-contract/test/auction-test.ts
-![image](https://github.com/legendarykamal/VenomVentures/assets/95926324/fa492793-bf22-4df3-ac83-5e3067be86b6)
 
 ### For Running the scripts 
 
@@ -100,6 +102,5 @@ We would like to express our gratitude to the Venom open-source community for th
 
 - Venom Blockchain: [venom.network](https://venom.network)
 - Smart Contracts: [VenomVentures Contracts](https://github.com/venomventures/nft-contract)
-- Documentation: [VenomVentures Docs](https://venomventures-docs.com)
 
 Join VenomVentures today and revolutionize the way startups and venture capitalists connect and collaborate for successful funding opportunities.
