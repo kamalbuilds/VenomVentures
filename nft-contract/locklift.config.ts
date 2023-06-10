@@ -68,7 +68,7 @@ const config: LockliftConfig = {
       },
       giver: {
         address: "0:9fa98bf9e91cb0ad1160fb2f20327e7bb9317e48f7d153898d75ccb9940abce4",
-        phrase: "phrase",
+        phrase: "virtual bone upon seek useful obey motor dragon achieve mixture ribbon example",
         accountId: 0,
       },
       tracing: {
@@ -77,7 +77,7 @@ const config: LockliftConfig = {
       keys: {
         // Use everdev to generate your phrase
         // !!! Never commit it in your repos !!!
-        // phrase: "virtual bone upon seek useful obey motor dragon achieve mixture ribbon example",
+        phrase: "virtual bone upon seek useful obey motor dragon achieve mixture ribbon example",
         amount: 20,
       },
     },

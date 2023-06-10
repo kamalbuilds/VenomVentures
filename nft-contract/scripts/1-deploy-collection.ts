@@ -4,13 +4,13 @@ async function main() {
 
     const json = {
         "type": "Basic NFT",
-        "name": "Sample",
-        "description": "Hello world",
+        "name": "VenomVentures",
+        "description": "Collection of the NFT Projects for VenomVentures Platform",
         "preview": {
-            "source": "https://www.forbesindia.com/media/images/2023/May/img_207611_shutterstock_2296217139_bg.jpg",
-            "mimetype": "image/jpg"
+            "source": "https://pbs.twimg.com/media/FyPDbjdXwAApicR.png",
+            "mimetype": "image/png"
         },
-        "external_url": "https://www.twitter.com/0xkamal7"
+        "external_url": "https://venomventures.vercel.app/"
     };
 
     console.log(JSON.stringify(json))
@@ -34,7 +34,7 @@ async function main() {
             codeIndex: indexArtifacts.code,
             codeIndexBasis: indexBasisArtifacts.code
         },
-        value: toNano(5),
+        value: toNano(1),
     });
     console.log(sample,tx,"hello");
     console.log(`Collection deployed at: ${sample.address.toString()}`);
