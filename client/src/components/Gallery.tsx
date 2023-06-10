@@ -1,4 +1,6 @@
 import React from 'react';
+import { getNftDetails } from '../utils/nft';
+import { useVenomWallet } from '../hooks/useVenomWallet';
 
 type Props = {
   // array of strings wit himage urls
@@ -8,7 +10,7 @@ type Props = {
   listIsEmpty?: boolean;
 };
 function Gallery({ collectionsItems, title, listIsEmpty, isLoading }: Props) {
-  // console.log(collectionsItems,"here");
+  console.log(collectionsItems,"here");
   return (
     <div className="lots">
       {title && <h1>{title}</h1>}
@@ -16,9 +18,12 @@ function Gallery({ collectionsItems, title, listIsEmpty, isLoading }: Props) {
       <div className="lots__list">
         {
           collectionsItems?.map((item, index) => (
-            <div className="lots__item" key={`${index} ${item}`}>
-              <img src={item} alt="img" />
-            </div>
+            // on clicking on image go to /campaign-details/
+            <a href='/campaign-details/item'>
+              <div className="lots__item" key={`${index} ${item}`}>
+                <img src={item} alt="img" />
+              </div>
+            </a>
           ))
         }
       </div>

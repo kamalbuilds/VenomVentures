@@ -5,6 +5,7 @@ import Gallery from '../components/Gallery';
 import { COLLECTION_ADDRESS } from '../utils/constants';
 // Our implemented util
 import { getNftsByIndexes } from '../utils/nft';
+import { getNftsDetailsByIndexes } from '../utils/nft';
 import { useVenomWallet } from '../hooks/useVenomWallet';
 
 type Props = {
@@ -72,8 +73,11 @@ function Profile({ myCollectionItems, setMyCollectionItems }: Props) {
         return;
       }
       
+      console.log(indexesAddresses,"indexesAddresses")
       // Fetch all image URLs
       const nftURLs = await getNftsByIndexes(provider, indexesAddresses);
+      const getNftDetails = await getNftsDetailsByIndexes(provider, indexesAddresses);
+      console.log(getNftDetails,"getNftDetails");
       setMyCollectionItems(nftURLs);
     } catch (e) {
       console.error(e);
@@ -92,7 +96,7 @@ function Profile({ myCollectionItems, setMyCollectionItems }: Props) {
     <Gallery
       isLoading={isLoading}
       collectionsItems={myCollectionItems}
-      title={address ? undefined : 'Please connect your wallet'}
+      title={address ? 'Your NFTs' : 'Please connect your wallet'}
       listIsEmpty={listIsEmpty}
     />
   );
