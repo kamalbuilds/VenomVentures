@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { VenomConnect } from 'venom-connect';
 import { Address, ProviderRpcClient } from 'everscale-inpage-provider';
 import { formatBalance, shortAddress } from '../utils/helpers';
-
+import { useVenomWallet } from '../hooks/useVenomWallet';
 import NftAuction from '../components/NftAuction';
 import '../styles/main.css';
 import fonImg from '../styles/img/decor.svg';
@@ -21,16 +21,16 @@ type Props = {
 function Main({ venomConnect }: Props) {
   const [venomProvider, setVenomProvider] = useState<any>();
   const [standaloneProvider, setStandAloneProvider] = useState<ProviderRpcClient | undefined>();
-  const [address, setAddress] = useState();
-  console.log(address,"address");
+  const { connect, disconnect, address } = useVenomWallet();
+  const [add, setAdd] = useState(address);
   // User's token (TIP-3) balance
   const [balance, setBalance] = useState<string | undefined>();
-  // User's TokenWallet (TIP-3) address
+  // User's TokenWallet (TIP-3) add
   const [tokenWalletAddress, setTokenWalletAddress] = useState<string | undefined>();
-  // This method allows us to gen a wallet address from inpage provider
+  // This method allows us to gen a wallet add from inpage provider
   const getAddress = async (provider: any) => {
     const providerState = await provider?.getProviderState?.();
-    return providerState?.permissions.accountInteraction?.address.toString();
+    return providerState?.permissions.accountInteraction?.add.toString();
   };
   // This method calls balance function of deployed TokenWallet smart contract (can be called with standalone client as provider)
   const getTokenWalletAddress = async (
@@ -55,7 +55,7 @@ function Main({ venomConnect }: Props) {
       // We check a contract state here to acknowledge if TokenWallet already deployed
       // As you remember, wallet can be deployed with first transfer on it.
       // If our wallet isn't deployed, so it's balance is 0 :)
-      const contractState = await venomProvider.rawApi.getFullContractState({ address: tokenWalletAddress });
+      const contractState = await venomProvider.rawApi.getFullContractState({ add: tokenWalletAddress });
       if (contractState.state) {
         // But if this deployed, just call a balance function
         const result = (await contract.methods.balance({ answerId: 0 } as never).call()) as any;
@@ -69,13 +69,13 @@ function Main({ venomConnect }: Props) {
       console.error(e);
     }
   };
-  // updating of user's TokenWallet (TIP-3) address (placed in hook)
+  // updating of user's TokenWallet (TIP-3) add (placed in hook)
   const updateTokenWalletAddress = async (provider: ProviderRpcClient, userWalletAddress: string) => {
     if (tokenWalletAddress) return;
     const walletAddress = await getTokenWalletAddress(provider, userWalletAddress);
     setTokenWalletAddress(walletAddress);
   };
-  // Any interaction with venom-wallet (address fetching is included) needs to be authentificated
+  // Any interaction with venom-wallet (add fetching is included) needs to be authentificated
   const checkAuth = async (_venomConnect: any) => {
     const auth = await _venomConnect?.checkAuth();
     if (auth) await getAddress(_venomConnect);
@@ -85,11 +85,7 @@ function Main({ venomConnect }: Props) {
     const standalone = await venomConnect?.getStandalone();
     setStandAloneProvider(standalone);
   };
-  // Handling click of login button. We need to call connect method of out VenomConnect instance, this action will call other connect handlers
-  const onLogin = async () => {
-    if (!venomConnect) return;
-    await venomConnect.connect();
-  };
+  
   // This handler will be called after venomConnect.login() action
   // connect method returns provider to interact with wallet, so we just store it in state
   const onConnect = async (provider: any) => {
@@ -97,17 +93,17 @@ function Main({ venomConnect }: Props) {
     await onProviderReady(provider);
   };
   // This handler will be called after venomConnect.disconnect() action
-  // By click logout. We need to reset address and balance.
+  // By click logout. We need to reset add and balance.
   const onDisconnect = async () => {
     venomProvider?.disconnect();
-    setAddress(undefined);
+    setAdd(undefined);
     setBalance(undefined);
     setTokenWalletAddress(undefined);
   };
-  // When our provider is ready, we need to get address and balance from.
+  // When our provider is ready, we need to get add and balance from.
   const onProviderReady = async (provider: any) => {
     const venomWalletAddress = provider ? await getAddress(provider) : undefined;
-    setAddress(venomWalletAddress);
+    setAdd(venomWalletAddress);
   };
   useEffect(() => {
     // connect event handler
@@ -121,33 +117,19 @@ function Main({ venomConnect }: Props) {
       off?.();
     };
   }, [venomConnect]);
-  // two hooks to init connected user's TokenWallet address and balance.
+  // two hooks to init connected user's TokenWallet add and balance.
   useEffect(() => {
-    if (address && standaloneProvider) {
-      updateTokenWalletAddress(standaloneProvider, address);
+    if (add && standaloneProvider) {
+      updateTokenWalletAddress(standaloneProvider, add);
     }
-  }, [address]);
+  }, [add]);
   useEffect(() => {
     if (tokenWalletAddress) updateBalance();
   }, [tokenWalletAddress]);
-  // you can see a shortAddress() functions here. It is just a helper, that truncate part of our long address to something like 0:1234...1234
+  // you can see a shortAddress() functions here. It is just a helper, that truncate part of our long add to something like 0:1234...1234
   return (
     <div className="box">
       <img className="decor" alt="fon" src={fonImg} />
-      <header>
-        {address ? (
-          <>
-            <p>{shortAddress(address)}</p>
-            <a className="logout" onClick={onDisconnect}>
-              <img src={LogOutImg} alt="Log out" />
-            </a>
-          </>
-        ) : (
-          <a className="btn" onClick={onLogin}>
-            Connect wallet
-          </a>
-        )}
-      </header>
       <NftAuction
         address={address}
         standaloneProvider={standaloneProvider}

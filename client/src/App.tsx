@@ -11,6 +11,7 @@ import { useEffect , useState } from "react";
 import { VenomConnect } from "venom-connect";
 import { initVenomConnect } from "./venom-connect/configure";
 import { Address, ProviderRpcClient } from 'everscale-inpage-provider';
+import { VenomWalletProvider } from "./providers/VenomWalletProvider";
 
 const App = () => {
   const [venomConnect, setVenomConnect] = useState<VenomConnect | undefined>();
@@ -75,20 +76,22 @@ const App = () => {
 
   return (
     <div>
-            <AppShell padding="md" navbar={<Navbar />} header={<Header />} >
-              <Routes>
-                <Route path="/" element={<Home standaloneProvider= {standaloneProvider}/>} />
-                <Route path="/profile" element={
-                <Profile address={address}
-                  standaloneProvider={standaloneProvider}
-                  myCollectionItems={myCollectionItems}
-                  setMyCollectionItems={setMyCollectionItems}  
-                />} />
-                <Route path="/create-campaign" element={<CreateCampaign venomProvider={venomProvider} signeraddress={Address} />} />
-                <Route path="/campaign-details/:id" element={<CampaignDetails />} />
-                <Route path="/auction" element={<Main venomConnect={venomConnect}/>} />
-              </Routes>
-            </AppShell>
+            <VenomWalletProvider>
+              <AppShell padding="md" navbar={<Navbar />} header={<Header />} >
+                <Routes>
+                  <Route path="/" element={<Home standaloneProvider= {standaloneProvider}/>} />
+                  <Route path="/profile" element={
+                  <Profile address={address}
+                    standaloneProvider={standaloneProvider}
+                    myCollectionItems={myCollectionItems}
+                    setMyCollectionItems={setMyCollectionItems}  
+                  />} />
+                  <Route path="/create-campaign" element={<CreateCampaign venomProvider={venomProvider} signeraddress={Address} />} />
+                  <Route path="/campaign-details/:id" element={<CampaignDetails />} />
+                  <Route path="/auction" element={<Main venomConnect={venomConnect}/>} />
+                </Routes>
+              </AppShell>
+            </VenomWalletProvider>
     </div>
   );
 };

@@ -52,7 +52,7 @@ export function CampaignForm<S extends z.ZodType<any, any>>(
             </Grid.Col>
             <Grid.Col md={6}>
               <LabeledTextField
-                name="target"
+                name="goal"
                 label="Goal"
                 placeholder="VENOM 0.005 "
                 type="number"
@@ -89,7 +89,7 @@ export const CreateCampaignValidation = z.object({
   name: z.string().min(4),
   title: z.string().min(4),
   description: z.string().min(4),
-  target: z.number().min(0.0000001),
+  goal: z.number().min(0.0000001),
   deadline: z.date(),
   image: z.string().url(),
 });
@@ -123,7 +123,7 @@ const CreateCampaign = (venomProvider : any, signeraddress : string) => {
         name: data.name,
         title: data.title,
         description: data.description,
-        target: data.target,
+        target: data.goal,
         deadline: data.deadline,
         preview: {
           source: ipfs_image.replace(
@@ -209,7 +209,7 @@ const CreateCampaign = (venomProvider : any, signeraddress : string) => {
           try {
             // mint nft
             console.log(values,"vsdf");
-            // mintnft(values);
+            mintnft(values);
           } catch (error: any) {
             console.error(error);
             showNotification({

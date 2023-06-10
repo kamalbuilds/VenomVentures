@@ -12,9 +12,12 @@ import { ologo, thirdweb } from "../assets";
 import { VenomConnect } from "venom-connect";
 import { initVenomConnect } from '../venom-connect/configure';
 import { useEffect } from "react";
+import { useVenomWallet } from "../hooks/useVenomWallet";
+import { formatBalance, shortAddress } from '../utils/helpers';
+import LogOutImg from '../styles/img/log_out.svg';
 
 const Header = () => {
-
+  const { address , connect , disconnect } = useVenomWallet();
   const [venomConnect, setVenomConnect] = useState<VenomConnect | undefined>();
 
   const init = async () => {
@@ -48,6 +51,20 @@ const Header = () => {
             value={""}
             onChange={(e) => {}}
           />
+          <header>
+            {address ? (
+              <>
+                <p>{shortAddress(address)}</p>
+                <a className="logout" onClick={disconnect}>
+                  <img src={LogOutImg} alt="Log out" />
+                </a>
+              </>
+            ) : (
+              <a className="btn" onClick={connect}>
+                Connect wallet
+              </a>
+            )}
+        </header>
 
           <div className="flex space-x-5 pr-5">
 
