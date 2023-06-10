@@ -84,7 +84,7 @@ const App = () => {
                   myCollectionItems={myCollectionItems}
                   setMyCollectionItems={setMyCollectionItems}  
                 />} />
-                <Route path="/create-campaign" element={<CreateCampaign />} />
+                <Route path="/create-campaign" element={<CreateCampaign venomProvider={venomProvider} signeraddress={Address} />} />
                 <Route path="/campaign-details/:id" element={<CampaignDetails />} />
                 <Route path="/auction" element={<Main venomConnect={venomConnect}/>} />
               </Routes>

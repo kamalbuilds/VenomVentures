@@ -1,4 +1,3 @@
-import dbConnect from "@/lib/dbConnect";
 import Nft from "../../models/Nft";
 import User from "../../models/User";
 import NFTCollection from "../../models/NFTCollection";
@@ -6,17 +5,7 @@ import NFTCollection from "../../models/NFTCollection";
 export default async function handler(req, res) {
   const { method } = req;
 
-  await dbConnect();
-
   switch (method) {
-    case "GET":
-      try {
-        const nfts = await Nft.find({}).populate("owner");
-        res.status(200).json({ success: true, data: nfts });
-      } catch (error) {
-        res.status(400).json({ success: false, data: error.message });
-      }
-      break;
     case "POST":
       try {
         let nft;

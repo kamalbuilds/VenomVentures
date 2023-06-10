@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Alert, Container, Grid, Paper, Title } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +13,9 @@ import {
   ProviderRpcClient,
   Subscriber,
 } from "everscale-inpage-provider";
+import CollectionAbi from "../abi/Collection.abi.json";
+import {COLLECTION_ADDRESS} from "../utils/constants";
+import { useState } from "react";
 
 export function CampaignForm<S extends z.ZodType<any, any>>(
   props: FormProps<S>
@@ -94,16 +98,19 @@ export type CreateCampaignValidationType = z.infer<
   typeof CreateCampaignValidation
 >;
 
-const CreateCampaign = () => {
-  const createCampaign= "";
+const CreateCampaign = (venomProvider : any, signeraddress : string) => {
   // call the createCampaign function here
   const navigate = useNavigate();
 
+  // adding state to store the minted nft
+  const [nftAddress, setNftAddress] = useState("");
+  const [tokenId, setTokenId] = useState("");
   
   const mintnft = async (data) => {
     try {
         // const BaseURL = "https://venomventures.vercel.app/api";
       const BaseURL = "http://localhost:3000/api";
+      // @ts-ignore
       const nftstorage = new NFTStorage({ token: process.env.NEXT_PUBLIC_NFTSTORAGE_API_KEY })
       const ipfs_image =
         typeof data.image == "string"
@@ -114,7 +121,10 @@ const CreateCampaign = () => {
         type: "Basic NFT",
         id: 0,
         name: data.name,
+        title: data.title,
         description: data.description,
+        target: data.target,
+        deadline: data.deadline,
         preview: {
           source: ipfs_image.replace(
             "ipfs://",
@@ -141,8 +151,8 @@ const CreateCampaign = () => {
       });
 
       const contract = new venomProvider.Contract(
-        collectionAbi,
-        collection_address
+        CollectionAbi,
+        COLLECTION_ADDRESS
       );
       const { count: id } = await contract.methods
         .totalSupply({ answerId: 0 })
@@ -152,31 +162,33 @@ const CreateCampaign = () => {
       const subscriber = new Subscriber(venomProvider);
       contract
         .events(subscriber)
-        .filter((event) => event.event === "tokenCreated")
-        .on(async (event) => {
+        .filter((event : any) => event.event === "tokenCreated")
+        .on(async (event : any) => {
           const { nft: nftAddress } = await contract.methods
             .nftAddress({ answerId: 0, id: id })
             .call();
 
-          const res = await axios({
-            url: `${BaseURL}/createnft`,
-            method: "POST",
-            data: {
-              nft_address: nftAddress._address,
-              tokenId: event.data.tokenId,
-              collection_name: data.collection,
-              json: nftjson,
-              owner: signer_address,
-            },
-          });
+            // const res = await fetch(`${BaseURL}/createnft`, {
+            //   method: "POST",
+            //   headers: {
+            //     "Content-Type": "application/json",
+            //   },
+            //   body: JSON.stringify({
+            //     nft_address: nftAddress._address,
+            //     tokenId: event.data.tokenId,
+            //     collection_name: data.collection,
+            //     json: nftjson,
+            //     owner: signeraddress,
+            //   }),
+            // });
 
           console.log(res.data);
         });
       const outputs = await contract.methods.mintNft({ json: nftjson }).send({
-        from: new Address(signer_address),
+        from: new Address(signeraddress),
         amount: "1000000000",
       });
-
+      console.log(outputs,"creatred");
     } catch (error) {
       alert(error.message);
       console.log(error.message);
@@ -193,10 +205,11 @@ const CreateCampaign = () => {
         schema={CreateCampaignValidation}
         initialValues={{}}
         onSubmit={async (values) => {
+          console.log(values,"v");
           try {
             // mint nft
             console.log(values,"vsdf");
-            mintnft(values);
+            // mintnft(values);
           } catch (error: any) {
             console.error(error);
             showNotification({
