@@ -1,4 +1,4 @@
-export const TOKEN_ROOT_ADDRESS = '+-';
+export const TOKEN_ROOT_ADDRESS = '0:6bf25d251adabf1268a8870ad1b45d46fcf782ef9f1bfa7c16032484d3e54ac7';
 // WVENOM Address
 export const AUCTION_ADDRESS = '0:ca1e36e0c196babe1f7395c5c5b1c9a6c7ec07d84035af792e7542330770d3a9';
 
