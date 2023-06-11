@@ -45,6 +45,7 @@ const CreateCampaign = () => {
         title: data.title,
         description: data.description,
         target: data.goal,
+        startdate: data.start,
         deadline: data.deadline,
         preview: {
           source: ipfs_image.replace(
@@ -180,7 +181,7 @@ const CreateCampaign = () => {
               <textarea
                 id="description"
                 placeholder="Give some information about your campaign"
-                rows={5}
+                rows={5} className="w-full"
                 {...register("description", { required: true })}
               />
               {errors.description && (
@@ -190,17 +191,17 @@ const CreateCampaign = () => {
             <div className="grid grid-cols-2 gap-4">
               <div className="col-span-1">
                 <div className="mb-4">
-                  <label htmlFor="target" className="block mb-2 font-semibold">
-                    Goal
+                  <label htmlFor="start" className="block mb-2 font-semibold">
+                    Start Date
                   </label>
                   <input
-                    type="number"
-                    id="target"
-                    placeholder="VENOM 5"
-                    {...register("target", { required: true })}
+                    type="date"
+                    id="deadline"
+                    placeholder="Pick a date"
+                    {...register("start", { required: true })}
                   />
-                  {errors.target && (
-                    <span className="text-red-500">Target is required</span>
+                  {errors.deadline && (
+                    <span className="text-red-500">StartDate is required</span>
                   )}
                 </div>
               </div>
@@ -220,6 +221,22 @@ const CreateCampaign = () => {
                   )}
                 </div>
               </div>
+              <div className="col-span-1">
+                <div className="mb-4">
+                  <label htmlFor="target" className="block mb-2 font-semibold">
+                    Goal
+                  </label>
+                  <input
+                    type="number"
+                    id="target"
+                    placeholder="VENOM 5"
+                    {...register("target", { required: true })}
+                  />
+                  {errors.target && (
+                    <span className="text-red-500">Target is required</span>
+                  )}
+                </div>
+              </div>
             </div>
             <div className="mb-4">
               <label htmlFor="image" className="block mb-2 font-semibold">
@@ -235,8 +252,8 @@ const CreateCampaign = () => {
                 <span className="text-red-500">Image is required</span>
               )}
             </div>
-            <div className="mb-4">
-              <button type="submit" className="btn-primary">
+            <div className="mb-4 text-center">
+              <button type="submit" className="btn-primary bg-indigo-500 p-4 rounded-full">
                 Submit new campaign
               </button>
             </div>

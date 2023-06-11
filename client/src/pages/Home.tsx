@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Title } from '@mantine/core';
 import { Address, ProviderRpcClient } from 'everscale-inpage-provider';
 import Gallery from '../components/Gallery';
 // Store it somwhere....for example in separate files for constants
@@ -8,13 +7,13 @@ import { COLLECTION_ADDRESS } from '../utils/constants';
 import collectionAbi from '../abi/Collection.abi.json';
 // Our implemented util
 import { getCollectionItems } from '../utils/nft';
-type Props = {
-  standaloneProvider: ProviderRpcClient | undefined;
-};
+import { useVenomWallet } from '../hooks/useVenomWallet';
 
-function Home({ standaloneProvider }: Props) {
+
+function Home() {
   // Just a strings array. Each string is an URL of NFT image.
-  const [collectionItems, setCollectionItem] = useState<string[] | []>([]);
+  const { standaloneProvider } = useVenomWallet();
+  const [collectionItems, setCollectionItems] = useState<string[] | []>([]);
   const [listIsEmpty, setListIsEmpty] = useState(false);
   // This method returns an NFT code hash by calling Collection contract. We need code hash for searching all NFTs
   // Returned code hash is a code hash ONLY for NFT of concrete collection
@@ -43,25 +42,21 @@ function Home({ standaloneProvider }: Props) {
         return;
       }
       const nftURLs = await getCollectionItems(provider, nftAddresses);
-      setCollectionItem(nftURLs);
+      setCollectionItems(nftURLs);
     } catch (e) {
-      console.error(e);
+      console.error("error in loaading nfts",e);
     }
   };
-  console.log(collectionItems,"yo");
   useEffect(() => {
     if (standaloneProvider) loadNFTs(standaloneProvider);
   }, [standaloneProvider]);
   return (
     <div>
-      <Title align="center" mb={20}>
-        All Campaigns
-      </Title>
+      <h1 className='text-2xl text-center text-indigo-400'>All Campaigns</h1>
       {collectionItems && (
         <Gallery collectionsItems={collectionItems} listIsEmpty={listIsEmpty} />
       )}
     </div>
   );
 }
-
 export default Home;
