@@ -20,82 +20,9 @@ type Props = {
 };
 function Auction({ venomConnect }: Props) {
 
-  const { address , venomProvider , standaloneProvider } = useVenomWallet();
-  console.log(venomProvider , standaloneProvider)
-  const [add, setAdd] = useState(address);
-  // User's token (TIP-3) balance
-  const [balance, setBalance] = useState<string | undefined>();
-  // User's TokenWallet (TIP-3) add
-  const [tokenWalletAddress, setTokenWalletAddress] = useState<string | undefined>();
-  // This method allows us to gen a wallet add from inpage provider
-  const getAddress = async (provider: any) => {
-    const providerState = await provider?.getProviderState?.();
-    return providerState?.permissions.accountInteraction?.add.toString();
-  };
-  // This method calls balance function of deployed TokenWallet smart contract (can be called with standalone client as provider)
-  const getTokenWalletAddress = async (
-    provider: ProviderRpcClient,
-    userWalletAddress: string
-  ): Promise<string | undefined> => {
-    const contract = new provider.Contract(tokenRootAbi, new Address(TOKEN_ROOT_ADDRESS));
-    const tokenWallet = (await contract.methods
-      .walletOf({
-        answerId: 0,
-        walletOwner: userWalletAddress,
-      } as never)
-      .call()) as any;
-    if (!tokenWallet) return undefined;
-    return tokenWallet.value0._address;
-  };
-  // updating of user's TIP-3 balance
-  const updateBalance = async () => {
-    if (!tokenWalletAddress || !standaloneProvider) return;
-    try {
-      const contract = new standaloneProvider.Contract(tokenWalletAbi, new Address(tokenWalletAddress));
-      // We check a contract state here to acknowledge if TokenWallet already deployed
-      // As you remember, wallet can be deployed with first transfer on it.
-      // If our wallet isn't deployed, so it's balance is 0 :)
-      const contractState = await venomProvider.rawApi.getFullContractState({ add: tokenWalletAddress });
-      if (contractState.state) {
-        // But if this deployed, just call a balance function
-        const result = (await contract.methods.balance({ answerId: 0 } as never).call()) as any;
-        const tokenBalance = result.value0;
-        // formatBalance is just a beauty helper to divide our balance by 10 ** 9 (decimals...our TIP-3 decimals is 9)
-        setBalance(formatBalance(tokenBalance));
-      } else {
-        setBalance('0');
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-  // updating of user's TokenWallet (TIP-3) add (placed in hook)
-  const updateTokenWalletAddress = async (provider: ProviderRpcClient, userWalletAddress: string) => {
-    if (tokenWalletAddress) return;
-    const walletAddress = await getTokenWalletAddress(provider, userWalletAddress);
-    setTokenWalletAddress(walletAddress);
-  };
-  // Any interaction with venom-wallet (add fetching is included) needs to be authentificated
+  const { address , venomProvider , standaloneProvider , balance , tokenWalletAddress , updateBalance } = useVenomWallet();
+  console.log(venomProvider , standaloneProvider , balance, tokenWalletAddress  ,"h")
 
-  // This handler will be called after venomConnect.disconnect() action
-  // By click logout. We need to reset add and balance.
-  const onDisconnect = async () => {
-    venomProvider?.disconnect();
-    setAdd(undefined);
-    setBalance(undefined);
-    setTokenWalletAddress(undefined);
-  };
-
-  // two hooks to init connected user's TokenWallet add and balance.
-  useEffect(() => {
-    if (add && standaloneProvider) {
-      updateTokenWalletAddress(standaloneProvider, add);
-    }
-  }, [add]);
-  useEffect(() => {
-    if (tokenWalletAddress) updateBalance();
-  }, [tokenWalletAddress]);
-  // you can see a shortAddress() functions here. It is just a helper, that truncate part of our long add to something like 0:1234...1234
   return (
     <div className="box">
       <img className="decor" alt="fon" src={fonImg} />

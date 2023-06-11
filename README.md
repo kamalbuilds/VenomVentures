@@ -1,7 +1,7 @@
 ## VenomVentures
 
 <p align="center">
-  <img src="https://github.com/legendarykamal/VenomVentures/assets/95926324/4bcb22a9-693a-4c2b-b328-7e2cc68448ee" alt="logo" />
+  <img src="https://github.com/legendarykamal/VenomVentures/assets/95926324/88e86cb7-0d44-4f4d-a65b-64ab5bf1bd00" alt="logo" />
 </p>
 
 VenomVentures is an innovative platform built on the Venom blockchain that aims to connect startups and venture capitalists, providing them with a secure and efficient environment to facilitate funding opportunities. By leveraging the power of blockchain technology and utilizing NFT auctions, VenomVentures revolutionizes the fundraising process and enhances transparency, trust, and liquidity for all participants.

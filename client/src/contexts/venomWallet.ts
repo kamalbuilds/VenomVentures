@@ -13,7 +13,10 @@ export interface VenomWalletContext {
   venomProvider?: any;
   connect: () => Promise<void>;
   disconnect: () => Promise<void>;
+  updateBalance: () => Promise<void>;
   standaloneProvider?: ProviderRpcClient;
+  balance?: string,
+  tokenWalletAddress?: string
 }
 
 export const venomWalletContext = createContext<VenomWalletContext>({
@@ -21,4 +24,6 @@ export const venomWalletContext = createContext<VenomWalletContext>({
   connect: async () => {},
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   disconnect: async () => {},
+
+  updateBalance: async () => {},
 });
