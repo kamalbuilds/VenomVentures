@@ -196,7 +196,7 @@ const CreateCampaign = () => {
                   <input
                     type="number"
                     id="target"
-                    placeholder="ETH 0.005"
+                    placeholder="VENOM 5"
                     {...register("target", { required: true })}
                   />
                   {errors.target && (

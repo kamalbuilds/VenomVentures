@@ -49,7 +49,7 @@ const DisplayCampaigns = (item: DisplayCampaignsCardProps) => {
 
         <Group position="apart" mt="md" mb="xs">
           <Text weight={500}>{item.title}</Text>
-          <Text weight={500}>ETH {item.target}</Text>
+          <Text weight={500}>VENOM {item.target}</Text>
         </Group>
 
         <Group position="apart" mt="md" mb="xs">
@@ -59,7 +59,7 @@ const DisplayCampaigns = (item: DisplayCampaignsCardProps) => {
 
         <Group position="apart" mt="md" mb="xs">
           <Text weight={500}> Total collected amount:</Text>
-          <Text weight={500}>ETH {item.amountCollected}</Text>
+          <Text weight={500}>VENOM {item.amountCollected}</Text>
         </Group>
 
         <Group position="apart" mt="md" mb="xs">
