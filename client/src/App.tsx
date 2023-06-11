@@ -6,7 +6,7 @@ import CampaignDetails from "./pages/CampaignDetails";
 import CreateCampaign from "./pages/CreateCampaign";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import Main from './pages/Main';
+import Auction from './pages/Auction';
 import { useEffect , useState } from "react";
 import { VenomConnect } from "venom-connect";
 import { initVenomConnect } from "./venom-connect/configure";
@@ -89,7 +89,7 @@ const App = () => {
                   />} />
                   <Route path="/create-campaign" element={<CreateCampaign  />} />
                   <Route path="/campaign-details/:id" element={<CampaignDetails />} />
-                  <Route path="/auction" element={<Main venomConnect={venomConnect}/>} />
+                  <Route path="/auction" element={<Auction venomConnect={venomConnect}/>} />
                 </Routes>
               </AppShell>
             </VenomWalletProvider>

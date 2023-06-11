@@ -18,7 +18,7 @@ import { TOKEN_ROOT_ADDRESS } from '../utils/constants';
 type Props = {
   venomConnect: VenomConnect | undefined;
 };
-function Main({ venomConnect }: Props) {
+function Auction({ venomConnect }: Props) {
 
   const { address , venomProvider , standaloneProvider } = useVenomWallet();
   console.log(venomProvider , standaloneProvider)
@@ -111,4 +111,4 @@ function Main({ venomConnect }: Props) {
   );
 }
 
-export default Main;
+export default Auction;
