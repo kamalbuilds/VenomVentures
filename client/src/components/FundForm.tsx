@@ -13,7 +13,7 @@ export function FundForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
         <LabeledTextField
           name="amount"
           label="Fund Amount"
-          placeholder="ETH 0.1 "
+          placeholder="VENOM 0.1 "
           type="number"
           required
           step={0.01}

@@ -19,7 +19,7 @@ function Gallery({ collectionsItems, title, listIsEmpty, isLoading }: Props) {
         {
           collectionsItems?.map((item, index) => (
             // on clicking on image go to /campaign-details/
-            <a href='/campaign-details/item'>
+            <a href={`/campaign-details/${index}`}>
               <div className="lots__item" key={`${index} ${item}`}>
                 <img src={item} alt="img" />
               </div>

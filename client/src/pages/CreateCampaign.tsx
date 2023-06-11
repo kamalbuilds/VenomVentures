@@ -1,4 +1,5 @@
 // @ts-nocheck
+import '../styles/main.css';
 import { useState } from "react";
 import { showNotification } from "@mantine/notifications";
 import { z } from "zod";
@@ -44,7 +45,7 @@ const CreateCampaign = () => {
         name: data.name,
         title: data.title,
         description: data.description,
-        target: data.goal,
+        target: data.target,
         startdate: data.start,
         deadline: data.deadline,
         preview: {
@@ -71,7 +72,7 @@ const CreateCampaign = () => {
         nft_image: ipfs_image,
         collection_name: data.collection,
       });
-
+      
       const contract = new venomProvider.Contract(
         CollectionAbi,
         COLLECTION_ADDRESS

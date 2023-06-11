@@ -46,7 +46,7 @@ function Profile({ myCollectionItems, setMyCollectionItems }: Props) {
   const { address, venomProvider } = useVenomWallet();
   const [listIsEmpty, setListIsEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [details , setDetails] = useState();
+  const [details , setDetails] = useState<any>();
   // Method, that return Index'es addresses by single query with fetched code hash
   const getAddressesFromIndex = async (codeHash: string): Promise<Address[] | undefined> => {
     const addresses = await venomProvider?.getAccountsByCodeHash({ codeHash });
@@ -78,6 +78,7 @@ function Profile({ myCollectionItems, setMyCollectionItems }: Props) {
       const nftURLs = await getNftsByIndexes(provider, indexesAddresses);
       const getNftDetails = await getNftsDetailsByIndexes(provider, indexesAddresses);
       console.log(getNftDetails,"getNftDetails");
+      setDetails(getNftDetails);
       setMyCollectionItems(nftURLs);
     } catch (e) {
       console.error(e);

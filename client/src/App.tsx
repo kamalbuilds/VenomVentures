@@ -13,7 +13,7 @@ import { initVenomConnect } from "./venom-connect/configure";
 import { Address, ProviderRpcClient } from 'everscale-inpage-provider';
 import { VenomWalletProvider } from "./providers/VenomWalletProvider";
 import LandingPage from "./pages/LandingPage";
-
+import Test from "./pages/Test";
 const App = () => {
   const [venomConnect, setVenomConnect] = useState<VenomConnect | undefined>();
   const [standaloneProvider, setStandAloneProvider] = useState<ProviderRpcClient | undefined>();
@@ -82,13 +82,14 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<LandingPage />} />
                   <Route path="/dashboard" element={<Home />} />
+                  <Route path="/t" element={<Test />} />
                   <Route path="/profile" element={
                   <Profile 
                     myCollectionItems={myCollectionItems}
                     setMyCollectionItems={setMyCollectionItems}  
                   />} />
                   <Route path="/create-campaign" element={<CreateCampaign  />} />
-                  <Route path="/campaign-details/:id" element={<CampaignDetails />} />
+                  <Route path="/campaign-details/:id" element={<Test />} />
                   <Route path="/auction" element={<Auction venomConnect={venomConnect}/>} />
                 </Routes>
               </AppShell>

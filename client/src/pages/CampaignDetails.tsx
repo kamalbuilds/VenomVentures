@@ -16,38 +16,116 @@ import { z } from "zod";
 import { DisplayCampaignsCardProps } from "../components/DisplayCampaigns";
 import { FORM_ERROR } from "../components/Form";
 import { FundForm } from "../components/FundForm";
-import { useAppState } from "../context";
 import { calculateBarPercentage, daysLeft } from "../utils";
 import {Demonstration} from "../components/demonstration/Demonstration";
-
+import { useVenomWallet } from "../hooks/useVenomWallet";
+import React, { useEffect, useState } from 'react';
+import { Address, ProviderRpcClient } from 'everscale-inpage-provider';
+// Store it somewhere....for example in separate files for constants
+import { COLLECTION_ADDRESS } from '../utils/constants';
+// Our implemented util
+import { getNftsByIndexes } from '../utils/nft';
+import { getNftsDetailsByIndexes } from '../utils/nft';
 
 export const CreateFundValidation = z.object({
   amount: z.number().min(0.0000001),
 });
 
-const CampaignDetails = () => {
+
+const saltCode = async (provider: ProviderRpcClient, ownerAddress: string) => {
+  // Index StateInit you should take from github. It ALWAYS constant!
+  const INDEX_BASE_64 = 'te6ccgECIAEAA4IAAgE0AwEBAcACAEPQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAgaK2zUfBAQkiu1TIOMDIMD/4wIgwP7jAvILHAYFHgOK7UTQ10nDAfhmifhpIds80wABn4ECANcYIPkBWPhC+RDyqN7TPwH4QyG58rQg+COBA+iogggbd0CgufK0+GPTHwHbPPI8EQ4HA3rtRNDXScMB+GYi0NMD+kAw+GmpOAD4RH9vcYIImJaAb3Jtb3Nwb3T4ZNwhxwDjAiHXDR/yvCHjAwHbPPI8GxsHAzogggujrde64wIgghAWX5bBuuMCIIIQR1ZU3LrjAhYSCARCMPhCbuMA+EbycyGT1NHQ3vpA0fhBiMjPjits1szOyds8Dh8LCQJqiCFus/LoZiBu8n/Q1PpA+kAwbBL4SfhKxwXy4GT4ACH4a/hs+kJvE9cL/5Mg+GvfMNs88gAKFwA8U2FsdCBkb2Vzbid0IGNvbnRhaW4gYW55IHZhbHVlAhjQIIs4rbNYxwWKiuIMDQEK103Q2zwNAELXTNCLL0pA1yb0BDHTCTGLL0oY1yYg10rCAZLXTZIwbeICFu1E0NdJwgGOgOMNDxoCSnDtRND0BXEhgED0Do6A34kg+Gz4a/hqgED0DvK91wv/+GJw+GMQEQECiREAQ4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAD/jD4RvLgTPhCbuMA0x/4RFhvdfhk0ds8I44mJdDTAfpAMDHIz4cgznHPC2FeIMjPkll+WwbOWcjOAcjOzc3NyXCOOvhEIG8TIW8S+ElVAm8RyM+EgMoAz4RAzgH6AvQAcc8LaV4gyPhEbxXPCx/OWcjOAcjOzc3NyfhEbxTi+wAaFRMBCOMA8gAUACjtRNDT/9M/MfhDWMjL/8s/zsntVAAi+ERwb3KAQG90+GT4S/hM+EoDNjD4RvLgTPhCbuMAIZPU0dDe+kDR2zww2zzyABoYFwA6+Ez4S/hK+EP4QsjL/8s/z4POWcjOAcjOzc3J7VQBMoj4SfhKxwXy6GXIz4UIzoBvz0DJgQCg+wAZACZNZXRob2QgZm9yIE5GVCBvbmx5AELtRNDT/9M/0wAx+kDU0dD6QNTR0PpA0fhs+Gv4avhj+GIACvhG8uBMAgr0pCD0oR4dABRzb2wgMC41OC4yAAAADCD4Ye0e2Q==';
+  // Gettind a code from Index StateInit
+  const tvc = await provider.splitTvc(INDEX_BASE_64);
+  if (!tvc.code) throw new Error('tvc code is empty');
+  // Salt structure that we already know
+  const saltStruct = [
+    { name: 'collection', type: 'address' },
+    { name: 'owner', type: 'address' },
+    { name: 'type', type: 'fixedbytes3' }, // according to standards, each index salted with string 'nft'
+  ] as const;
+  const { code: saltedCode } = await provider.setCodeSalt({
+    code: tvc.code,
+    salt: {
+      structure: saltStruct,
+      abiVersion: '2.1',
+      data: {
+        collection: new Address(COLLECTION_ADDRESS),
+        owner: new Address(ownerAddress),
+        type: btoa('nft'),
+      },
+    },
+  });
+  return saltedCode;
+};
+
+const CampaignDetails = ({ myCollectionItems, setMyCollectionItems }: Props) => {
+  const { address, venomProvider } = useVenomWallet();
+  const [listIsEmpty, setListIsEmpty] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [details , setDetails] = useState();
+  // Method, that return Index'es addresses by single query with fetched code hash
+  const getAddressesFromIndex = async (codeHash: string): Promise<Address[] | undefined> => {
+    const addresses = await venomProvider?.getAccountsByCodeHash({ codeHash });
+    console.log(addresses,"addresses kamal");
+    return addresses?.accounts;
+  };
+
+  // Main method of this component
+  const loadNFTs = async (provider: ProviderRpcClient, ownerAddress: string) => {
+    setIsLoading(true);
+    setListIsEmpty(false);
+    console.log(provider , ownerAddress);
+    try {
+      // Take a salted code
+      const saltedCode = await saltCode(provider, ownerAddress);
+      // Hash it
+      const codeHash = await provider.getBocHash(saltedCode);
+      if (!codeHash) {
+        return;
+      }
+      // Fetch all Indexes by hash
+      const indexesAddresses = await getAddressesFromIndex(codeHash);
+      if (!indexesAddresses || !indexesAddresses.length) {
+        if (indexesAddresses && !indexesAddresses.length) setListIsEmpty(true);
+        return;
+      }
+      
+      console.log(indexesAddresses,"indexesAddresses")
+      // Fetch all image URLs
+      const getNftDetails = await getNftsDetailsByIndexes(provider, indexesAddresses);
+      console.log(getNftDetails,"getNftDetails");
+      setDetails(getNftDetails);
+    
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+    
+  useEffect(() => {
+    if (address && venomProvider) loadNFTs(venomProvider, address);
+    if (!address) setListIsEmpty(false);
+  }, [address]);
+
+
+  // details
   const { id } = useParams();
 
   console.log({ id });
 
 
-  const data ="";
-  const address =""
   // get campaign by id
 
   const donateCampaign  =  "";
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   console.log({ data });
 
   const typedState = {
     ...data,
-    target: ethers.utils.formatEther(data.target.toString()),
-    amountCollected: ethers.utils.formatEther(data.amountCollected.toString()),
-    deadline: new Date(data.deadline.toNumber()),
+    target: data.target?.toString(),
+    amountCollected: data.amountCollected?.toString(),
+    deadline: new Date(data.deadline?.toNumber()),
   } as DisplayCampaignsCardProps;
 
   console.log({ typedState });
@@ -99,7 +177,7 @@ const CampaignDetails = () => {
 
           <Card radius="xl" p={0}>
             <Title p={15} order={2}>
-              {typedState.donators.length}
+              {typedState.donators?.length}
             </Title>
             <Text bg="gray" p={15} className="rounded-lg mt-1 w-full">
               Total Backers
@@ -146,15 +224,8 @@ const CampaignDetails = () => {
                 initialValues={{}}
                 onSubmit={async (values) => {
                   try {
-                    sendTransaction();
-                    await donateCampaign([
-                      typedState.id,
-                      {
-                        value: ethers.utils.parseEther(
-                          values.amount.toString()
-                        ),
-                      },
-                    ]);
+                    
+                    // fund campaign
 
                     showNotification({
                       title: "Successfully funded",
@@ -182,6 +253,6 @@ const CampaignDetails = () => {
       </div>
     </Container>
   );
-};
+}};
 
 export default CampaignDetails;
