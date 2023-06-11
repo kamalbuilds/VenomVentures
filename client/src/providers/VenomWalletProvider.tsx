@@ -24,7 +24,8 @@ export const VenomWalletProvider: FC<VenomWalletProviderProps> = ({
   useEffect(() => {
     init();
   }, []);
-  const [venomProvider, setVenomProvider] = useState<ProviderRpcClient>();
+  const [venomProvider, setVenomProvider] = useState<any>();
+  const [standaloneProvider, setStandAloneProvider] = useState<ProviderRpcClient | undefined>();
   const [address, setAddress] = useState<string>();
   // This method allows us to gen a wallet address from inpage provider
   const getAccountInteraction = async (
@@ -44,8 +45,9 @@ export const VenomWalletProvider: FC<VenomWalletProviderProps> = ({
   // Method for getting a standalone provider from venomConnect instance
   const initStandalone = async () => {
     const standalone = await venomConnect?.getStandalone();
-    setVenomProvider(standalone);
+    setStandAloneProvider(standalone);
   };
+
   // When our provider is ready, we need to get the address
   const onProviderReady = async (provider: ProviderRpcClient) => {
     if (!provider) {
@@ -81,7 +83,7 @@ export const VenomWalletProvider: FC<VenomWalletProviderProps> = ({
   };
 
   const disconnect = async () => {
-    venomProvider?.disconnect();
+    standaloneProvider?.disconnect();
     setAddress(undefined);
 
   };
@@ -93,7 +95,8 @@ export const VenomWalletProvider: FC<VenomWalletProviderProps> = ({
         disconnect,
         address,
         accountInteraction,
-        venomProvider,
+        standaloneProvider,
+        venomProvider
       }}
     >
       {children}

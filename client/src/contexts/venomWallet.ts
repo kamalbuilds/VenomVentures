@@ -10,9 +10,10 @@ export interface AccountInteraction {
 export interface VenomWalletContext {
   address?: string;
   accountInteraction?: AccountInteraction;
-  venomProvider?: ProviderRpcClient;
+  venomProvider?: any;
   connect: () => Promise<void>;
   disconnect: () => Promise<void>;
+  standaloneProvider?: ProviderRpcClient;
 }
 
 export const venomWalletContext = createContext<VenomWalletContext>({

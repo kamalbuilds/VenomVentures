@@ -19,9 +19,9 @@ type Props = {
   venomConnect: VenomConnect | undefined;
 };
 function Main({ venomConnect }: Props) {
-  const [venomProvider, setVenomProvider] = useState<any>();
-  const [standaloneProvider, setStandAloneProvider] = useState<ProviderRpcClient | undefined>();
-  const { connect, disconnect, address } = useVenomWallet();
+
+  const { address , venomProvider , standaloneProvider } = useVenomWallet();
+  console.log(venomProvider , standaloneProvider)
   const [add, setAdd] = useState(address);
   // User's token (TIP-3) balance
   const [balance, setBalance] = useState<string | undefined>();
@@ -76,22 +76,7 @@ function Main({ venomConnect }: Props) {
     setTokenWalletAddress(walletAddress);
   };
   // Any interaction with venom-wallet (add fetching is included) needs to be authentificated
-  const checkAuth = async (_venomConnect: any) => {
-    const auth = await _venomConnect?.checkAuth();
-    if (auth) await getAddress(_venomConnect);
-  };
-  // Method for getting a standalone provider from venomConnect instance
-  const initStandalone = async () => {
-    const standalone = await venomConnect?.getStandalone();
-    setStandAloneProvider(standalone);
-  };
-  
-  // This handler will be called after venomConnect.login() action
-  // connect method returns provider to interact with wallet, so we just store it in state
-  const onConnect = async (provider: any) => {
-    setVenomProvider(provider);
-    await onProviderReady(provider);
-  };
+
   // This handler will be called after venomConnect.disconnect() action
   // By click logout. We need to reset add and balance.
   const onDisconnect = async () => {
@@ -100,23 +85,7 @@ function Main({ venomConnect }: Props) {
     setBalance(undefined);
     setTokenWalletAddress(undefined);
   };
-  // When our provider is ready, we need to get add and balance from.
-  const onProviderReady = async (provider: any) => {
-    const venomWalletAddress = provider ? await getAddress(provider) : undefined;
-    setAdd(venomWalletAddress);
-  };
-  useEffect(() => {
-    // connect event handler
-    const off = venomConnect?.on('connect', onConnect);
-    if (venomConnect) {
-      initStandalone();
-      checkAuth(venomConnect);
-    }
-    // just an empty callback, cuz we don't need it
-    return () => {
-      off?.();
-    };
-  }, [venomConnect]);
+
   // two hooks to init connected user's TokenWallet add and balance.
   useEffect(() => {
     if (add && standaloneProvider) {
